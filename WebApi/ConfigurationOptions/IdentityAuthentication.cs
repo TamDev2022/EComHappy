@@ -1,9 +1,9 @@
 ﻿namespace WebApi.ConfigurationOptions
 {
-    public class JwtSettings
+    public class IdentityAuthentication
     {
         public string Authority { get; set; }
-        public string ApiName { get; set; }
+        public string IdentityUrl { get; set; }
         public bool RequireHttpsMetadata { get; set; }
         public string Issuer { get; set; }
         public string Audience { get; set; }

@@ -10,13 +10,7 @@ namespace Persistence.Repositories
     {
         private readonly ApplicationDbContext _dbContext;
         protected DbSet<TEntity> DbSet => _dbContext.Set<TEntity>();
-        public IUnitOfWork UnitOfWork
-        {
-            get
-            {
-                return _dbContext;
-            }
-        }
+
         public GenericRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;

@@ -5,12 +5,7 @@ using WebApi.CustomExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Configuration.AddJsonFile("appsetting.json");
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
         .ConfigureContainer<ContainerBuilder>(builder =>
@@ -19,8 +14,15 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
             builder.RegisterModule(new MediatorModule());
         });
 
+// Add services to the container.
+
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 // Custom configurations
-builder.Services.AddCustomConfiguration(builder.Configuration); 
+builder.Services.AddCustomConfiguration(builder.Configuration);
 
 var app = builder.Build();
 
@@ -28,7 +30,21 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        var _provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+
+        // build a swagger endpoint for each discovered API version
+        foreach (var description in _provider.ApiVersionDescriptions)
+        {
+            options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+            options.DefaultModelsExpandDepth(-1);
+            options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.List);
+        }
+
+        options.DefaultModelsExpandDepth(-1);
+
+    });
 }
 
 app.UseHttpsRedirection();
