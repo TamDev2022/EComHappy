@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Events
+namespace Domain.Base
 {
     public interface IDomainEvent : INotification
     {
+        DateTime OccurredOn { get; }
     }
 }

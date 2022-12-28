@@ -18,5 +18,7 @@ namespace Domain.Events
         public T Entity { get; }
 
         public DateTime EventDateTime { get; }
+
+        public DateTime OccurredOn => throw new NotImplementedException();
     }
 }

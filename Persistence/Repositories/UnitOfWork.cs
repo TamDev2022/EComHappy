@@ -1,45 +1,126 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
 
 namespace Persistence.Repositories
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork<TContext> : IUnitOfWork<TContext>, IUnitOfWork where TContext : DbContext
     {
-        private readonly ApplicationDbContext _dbContext;
-        public UnitOfWork(ApplicationDbContext dbContext)
+        private readonly TContext _dbContext;
+        private bool disposed = false;
+        private Dictionary<Type, object> repositories;
+        private IDbContextTransaction _objTran;
+
+        public UnitOfWork(TContext dbContext)
         {
-            _dbContext = dbContext;
+            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(_dbContext));
         }
 
-        public ApplicationDbContext GetContext { get { return _dbContext; } }
+        public TContext DbContext => _dbContext;
 
-        public Task<IDisposable> BeginTransactionAsync(IsolationLevel isolationLevel = IsolationLevel.ReadCommitted, CancellationToken cancellationToken = default)
+        public IGenericRepository<TEntity> GetRepository<TEntity>(bool hasCustomRepository = false) where TEntity : class, IAggregateRoot
         {
-            throw new NotImplementedException();
+            if (repositories == null)
+            {
+                repositories = new Dictionary<Type, object>();
+            }
+
+            // what's the best way to support custom reposity?
+            if (hasCustomRepository)
+            {
+                var customRepo = _dbContext.GetService<IGenericRepository<TEntity>>();
+                if (customRepo != null)
+                {
+                    return customRepo;
+                }
+            }
+
+            var type = typeof(TEntity);
+            if (!repositories.ContainsKey(type))
+            {
+                repositories[type] = new GenericRepository<TEntity>(_dbContext);
+            }
+
+            return (IGenericRepository<TEntity>)repositories[type];
         }
 
-        public Task<IDisposable> BeginTransactionAsync(IsolationLevel isolationLevel = IsolationLevel.ReadCommitted, string lockName = null, CancellationToken cancellationToken = default)
+        public async Task<IDisposable> BeginTransactionAsync(IsolationLevel isolationLevel = IsolationLevel.ReadCommitted, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            _objTran = await _dbContext.Database.BeginTransactionAsync(isolationLevel, cancellationToken);
+            return _objTran;
         }
 
-        public Task CommitTransactionAsync(CancellationToken cancellationToken = default)
+        public async Task<IDisposable> BeginTransactionAsync(IsolationLevel isolationLevel = IsolationLevel.ReadCommitted, string lockName = null, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            _objTran = await _dbContext.Database.BeginTransactionAsync(isolationLevel, cancellationToken);
+
+            //var sqlLock = new SqlDistributedLock(_objTran.GetDbTransaction() as SqlTransaction);
+            //var lockScope = sqlLock.Acquire(lockName);
+            //if (lockScope == null)
+            //{
+            //    throw new Exception($"Could not acquire lock: {lockName}");
+            //}
+
+            return _objTran;
         }
 
-        public Task RollbackTransactionAsync(CancellationToken cancellationToken = default)
+        public void CommitTransaction()
         {
-            throw new NotImplementedException();
+            _objTran.Commit();
         }
 
-        public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        public async Task CommitTransactionAsync(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            await _objTran.CommitAsync(cancellationToken);
         }
+
+        public void RollbackTransaction()
+        {
+            _objTran.Rollback();
+            _objTran.Dispose();
+        }
+
+        public async Task RollbackTransactionAsync(CancellationToken cancellationToken = default)
+        {
+            await _objTran.RollbackAsync(cancellationToken);
+            await _objTran.DisposeAsync();
+        }
+
+        public void SaveChanges()
+        {
+            _dbContext.SaveChanges();
+        }
+
+        public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            return await _dbContext.SaveChangesAsync(cancellationToken);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+
+            GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    // clear repositories
+                    if (repositories != null)
+                    {
+                        repositories.Clear();
+                    }
+
+                    // dispose the db context.
+                    _dbContext.Dispose();
+                }
+            }
+            disposed = true;
+        }
+
     }
 }
