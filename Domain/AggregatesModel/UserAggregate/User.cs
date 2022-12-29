@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace Domain.AggregatesModel.UserAggregate
 {
     public class User : BaseEntity<Guid>, IAggregateRoot
     {

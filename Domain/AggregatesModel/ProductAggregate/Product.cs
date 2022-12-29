@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace Domain.AggregatesModel.ProductAggregate
 {
     public class Product : BaseEntity<Guid>, IAggregateRoot
     {
