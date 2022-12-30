@@ -1,9 +1,6 @@
 ﻿global using MediatR;
 global using Domain.Base;
-global using Domain.AggregatesModel.AudiLogEntryAggregate;
-global using Domain.AggregatesModel.ProductAggregate;
-global using Domain.AggregatesModel.RoleAggregate;
-global using Domain.AggregatesModel.UserAggregate;
+global using Domain.Entities;
 global using System.Data;
 global using System.Linq.Expressions;
 global using Microsoft.EntityFrameworkCore;
