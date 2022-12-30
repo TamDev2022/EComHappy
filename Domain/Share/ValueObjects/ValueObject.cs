@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.ValueObjects
+namespace Domain.Share.ValueObjects
 {
     public abstract class ValueObject
     {
@@ -34,7 +34,7 @@ namespace Domain.ValueObjects
                 {
                     unchecked
                     {
-                        return (current * 23) + (obj?.GetHashCode() ?? 0);
+                        return current * 23 + (obj?.GetHashCode() ?? 0);
                     }
                 });
         }

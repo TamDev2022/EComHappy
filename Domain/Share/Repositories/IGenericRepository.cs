@@ -1,14 +1,7 @@
-﻿using Domain.Base;
-using Domain.Collections;
-using Microsoft.EntityFrameworkCore.Query;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Share.Base;
+using Domain.Share.Collections;
 
-namespace Domain.Repositories
+namespace Domain.Share.Repositories
 {
     public interface IGenericRepository<TEntity> where TEntity : class, IAggregateRoot
     {
@@ -53,7 +46,7 @@ namespace Domain.Repositories
                                                     int pageIndex = 0,
                                                     int pageSize = 20,
                                                     bool disableTracking = true,
-                                                    CancellationToken cancellationToken = default(CancellationToken),
+                                                    CancellationToken cancellationToken = default,
                                                     bool ignoreQueryFilters = false);
 
         /// <summary>
@@ -101,7 +94,7 @@ namespace Domain.Repositories
                                                              int pageIndex = 0,
                                                              int pageSize = 20,
                                                              bool disableTracking = true,
-                                                             CancellationToken cancellationToken = default(CancellationToken),
+                                                             CancellationToken cancellationToken = default,
                                                              bool ignoreQueryFilters = false) where TResult : class;
 
         /// <summary>
@@ -411,7 +404,7 @@ namespace Domain.Repositories
         /// <param name="entity">The entity to insert.</param>
         /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
         /// <returns>A <see cref="Task"/> that represents the asynchronous insert operation.</returns>
-        ValueTask<EntityEntry<TEntity>> InsertAsync(TEntity entity, CancellationToken cancellationToken = default(CancellationToken));
+        ValueTask<EntityEntry<TEntity>> InsertAsync(TEntity entity, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Inserts a range of entities asynchronously.
@@ -426,7 +419,7 @@ namespace Domain.Repositories
         /// <param name="entities">The entities to insert.</param>
         /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
         /// <returns>A <see cref="Task"/> that represents the asynchronous insert operation.</returns>
-        Task InsertAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken));
+        Task InsertAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Updates the specified entity.

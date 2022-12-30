@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Base
+namespace Domain.Share.Base
 {
     public class DomainEventBase : IDomainEvent
     {
         public DomainEventBase()
         {
-            this.OccurredOn = DateTime.Now;
+            OccurredOn = DateTime.Now;
         }
 
         public DateTime OccurredOn { get; }

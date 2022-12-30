@@ -1,4 +1,6 @@
 ﻿
+using Domain.Share.Collections;
+
 namespace Persistence.Collections
 {
     public class PagedList<T> : IPagedList<T>

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
-namespace Domain.Base
+namespace Domain.Share.Base
 {
     public interface IEntity
     {
@@ -32,7 +27,7 @@ namespace Domain.Base
         public void AddDomainEvent(IDomainEvent domainEvent)
         {
             _domainEvents = _domainEvents ?? new List<IDomainEvent>();
-            this._domainEvents.Add(domainEvent);
+            _domainEvents.Add(domainEvent);
         }
 
         public void ClearDomainEvents()

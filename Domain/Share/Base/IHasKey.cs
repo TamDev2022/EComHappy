@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Base
+namespace Domain.Share.Base
 {
-    public interface IDomainEvent : INotification
+    public interface IHasKey<TKey>
     {
-        DateTime OccurredOn { get; }
+        TKey Id { get; set; }
     }
 }

@@ -1,5 +1,9 @@
 ﻿
 
+using Domain.Share.Base;
+using Domain.Share.Collections;
+using Domain.Share.Repositories;
+
 namespace Persistence.Repositories
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class, IAggregateRoot

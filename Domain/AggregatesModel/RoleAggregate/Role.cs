@@ -1,4 +1,6 @@
 ﻿
+using Domain.Share.Base;
+
 namespace Domain.AggregatesModel.RoleAggregate
 {
     public class Role : BaseEntity<Guid>, IAggregateRoot

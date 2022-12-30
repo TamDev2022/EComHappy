@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domain.Collections
+﻿namespace Domain.Share.Collections
 {
     public class IPagedList<T>
     {

@@ -1,4 +1,6 @@
-﻿namespace Domain.Collections
+﻿using Domain.Share.Collections;
+
+namespace Domain.Collections
 {
     public static class IQueryablePageListExtensions
     {

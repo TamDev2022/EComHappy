@@ -1,5 +1,7 @@
 ﻿
 
+using Domain.Share.Collections;
+
 namespace Domain.Collections
 {
     public static class IEnumerablePagedListExtensions

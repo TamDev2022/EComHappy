@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
+using Domain.Share.Repositories;
+using Domain.Share.Base;
 
 namespace Persistence.Repositories
 {

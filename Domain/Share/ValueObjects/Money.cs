@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.ValueObjects
+namespace Domain.Share.ValueObjects
 {
     public class Money : ValueObject
     {

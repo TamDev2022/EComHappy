@@ -1,5 +1,4 @@
-﻿using Domain.Base;
-
+﻿using Domain.Share.Base;
 
 namespace Domain.AggregatesModel.AudiLogEntryAggregate
 {

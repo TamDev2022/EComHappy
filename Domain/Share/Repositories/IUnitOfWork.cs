@@ -1,6 +1,7 @@
-﻿using Domain.Base;
+﻿
+using Domain.Share.Base;
 
-namespace Domain.Repositories
+namespace Domain.Share.Repositories
 {
     public interface IUnitOfWork : IDisposable
     {

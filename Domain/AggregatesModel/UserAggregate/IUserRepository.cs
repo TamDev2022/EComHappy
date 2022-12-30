@@ -1,5 +1,6 @@
-﻿
-namespace Domain.Repositories
+﻿using Domain.Share.Repositories;
+
+namespace Domain.AggregatesModel.UserAggregate
 {
     public class UserQueryOptions
     {
