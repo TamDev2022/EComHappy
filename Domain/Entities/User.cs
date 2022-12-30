@@ -1,11 +1,11 @@
-﻿using Domain.Base;
+﻿using Domain.Share.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.AggregatesModel.UserAggregate
+namespace Domain.Entities
 {
     public class User : BaseEntity<Guid>, IAggregateRoot
     {

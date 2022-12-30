@@ -1,7 +1,7 @@
 ﻿using Domain.Base;
 
 
-namespace Domain.AggregatesModel.AudiLogEntryAggregate
+namespace Domain.Entities
 {
     public class AuditLogEntry : BaseEntity<Guid>, IAggregateRoot
     {
