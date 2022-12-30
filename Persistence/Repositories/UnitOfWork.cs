@@ -1,7 +1,4 @@
 ﻿
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore;
-using System.Text.RegularExpressions;
 
 namespace Persistence.Repositories
 {
