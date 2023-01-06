@@ -5,7 +5,7 @@ using WebApi.CustomExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Configuration.AddJsonFile("appsetting.json");
+//builder.Configuration.AddJsonFile("appsetting.json");
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
         .ConfigureContainer<ContainerBuilder>(builder =>
@@ -23,6 +23,9 @@ builder.Services.AddSwaggerGen();
 
 // Custom configurations
 builder.Services.AddCustomConfiguration(builder.Configuration);
+builder.Services.AddCustomDbContext(builder.Configuration);
+builder.Services.AddCustomSwagger(builder.Configuration);
+builder.Services.AddCustomAuthentication(builder.Configuration);
 
 var app = builder.Build();
 

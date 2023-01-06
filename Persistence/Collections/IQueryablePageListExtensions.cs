@@ -1,4 +1,4 @@
-﻿namespace Domain.Collections
+﻿namespace Persistence.Collections
 {
     public static class IQueryablePageListExtensions
     {

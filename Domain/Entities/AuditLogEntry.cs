@@ -12,5 +12,13 @@ namespace Domain.Entities
         public string ObjectId { get; set; }
 
         public string Log { get; set; }
+
+        public Product Product
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

@@ -7,8 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Common\" />
-    <Folder Include="Behaviors\" />
+    <Folder Include="Commands\Roles\" />
+    <Folder Include="Commands\Users\" />
+    <Folder Include="DomainEventHandlers\Roles\" />
+    <Folder Include="Queries\Users\" />
+    <Folder Include="Validators\Users\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="11.1.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
 </Project>

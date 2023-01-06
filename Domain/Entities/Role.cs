@@ -9,10 +9,9 @@ namespace Domain.Entities
 {
     public class Role : BaseEntity<Guid>, IAggregateRoot
     {
-        public Guid RoleId;
 
-        public string RoleName;
+        public string RoleName { get; set; }
 
-        public User User;
+        public ICollection<User> Users;
     }
 }

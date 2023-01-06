@@ -51,7 +51,7 @@ namespace Infrastructure.AutofacModules
                 {
                     var componentContext = context.Resolve<IComponentContext>();
                     return t => componentContext.Resolve(t);
-                }).InstancePerLifetimeScope(); ;
+                }).InstancePerLifetimeScope();
 
 
         }

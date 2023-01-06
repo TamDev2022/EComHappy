@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
 using Microsoft.OpenApi.Models;
+using Persistence;
 using System.Reflection;
 using System.Text;
 using WebApi.ConfigurationOptions;
@@ -14,6 +17,13 @@ namespace WebApi.CustomExtensions
 
         public static IServiceCollection AddCustomDbContext(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("ApplicationDbContext")));
+
+
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlServer(configuration.GetConnectionString(appSettings.connectionStrings.ApplicationDbContext)));
+
             return services;
         }
 
@@ -116,8 +126,6 @@ namespace WebApi.CustomExtensions
             // If we would like to provide request and response examples (Part 2/2)
             // Register examples with the ServiceProvider based on the location assembly or example type.
             services.AddSwaggerExamplesFromAssemblies(Assembly.GetEntryAssembly());
-
-
 
 
 

@@ -39,13 +39,13 @@ namespace Persistence.Collections
         /// Gets the has previous page.
         /// </summary>
         /// <value>The has previous page.</value>
-        public bool HasPreviousPage => PageIndex - IndexFrom > 0;
+        public new bool HasPreviousPage => PageIndex - IndexFrom > 0;
 
         /// <summary>
         /// Gets the has next page.
         /// </summary>
         /// <value>The has next page.</value>
-        public bool HasNextPage => PageIndex - IndexFrom + 1 < TotalPages;
+        public new bool HasNextPage => PageIndex - IndexFrom + 1 < TotalPages;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PagedList{T}" /> class.
