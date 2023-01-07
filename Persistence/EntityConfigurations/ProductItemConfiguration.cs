@@ -11,6 +11,8 @@ namespace Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<ProductItem> builder)
         {
             builder.HasKey(pi => new { pi.Id, pi.ProductId });
+            builder.Property(pi => pi.Id).HasDefaultValueSql("newsequentialid()");
+
 
             builder.HasMany<CartItem>(pi => pi.CartItems)
                    .WithOne(ci => ci.ProductItem)

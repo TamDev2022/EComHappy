@@ -11,6 +11,8 @@ namespace Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<UserStatus> builder)
         {
             builder.HasKey(us => us.Id);
+            builder.Property(us => us.Id).HasDefaultValueSql("newsequentialid()");
+
 
             builder.HasMany<UserStatusTrans>(us => us.UserStatusTrans)
                   .WithOne(ut => ut.UserStatus)

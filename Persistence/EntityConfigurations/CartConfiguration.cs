@@ -11,6 +11,8 @@ namespace Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<Cart> builder)
         {
             builder.HasKey(c => c.Id);
+            builder.Property(c => c.Id).HasDefaultValueSql("newsequentialid()");
+
 
             builder.HasOne<User>(c => c.User)
             .WithOne(u => u.Cart)

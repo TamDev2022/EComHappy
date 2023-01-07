@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Application.DomainEventHandlers.Users
+namespace Application.Commands.Users
 {
     public class DeleteUserCommand : IRequest<bool>
     {

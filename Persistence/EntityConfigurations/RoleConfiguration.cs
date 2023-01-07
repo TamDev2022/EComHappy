@@ -11,6 +11,8 @@ namespace Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<Role> builder)
         {
             builder.HasKey(r => r.Id);
+            builder.Property(r => r.Id).HasDefaultValueSql("newsequentialid()");
+
 
             builder.HasMany<User>(r => r.Users)
                 .WithOne(u => u.Role)

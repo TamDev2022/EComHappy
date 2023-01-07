@@ -11,6 +11,7 @@ namespace Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<Brand> builder)
         {
             builder.HasKey(b => b.Id);
+            builder.Property(b => b.Id).HasDefaultValueSql("newsequentialid()");
 
             builder.HasMany<Product>(c => c.Products)
                   .WithOne(p => p.Brand)

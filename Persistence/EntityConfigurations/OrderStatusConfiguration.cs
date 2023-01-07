@@ -11,6 +11,8 @@ namespace Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<OrderStatus> builder)
         {
             builder.HasKey(os => os.Id);
+            builder.Property(os => os.Id).HasDefaultValueSql("newsequentialid()");
+
 
             builder.HasMany<Order>(os => os.Orders)
                   .WithOne(o => o.OrderStatus)

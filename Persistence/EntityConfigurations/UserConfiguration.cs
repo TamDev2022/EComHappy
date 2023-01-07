@@ -8,6 +8,8 @@ namespace Persistence.EntityConfigurations
             builder.ToTable("User");
 
             builder.HasKey(u => u.Id);
+            builder.Property(u => u.Id).HasDefaultValueSql("newsequentialid()");
+
 
             builder.HasMany<UserStatusTrans>(u => u.UserStatusTrans)
                    .WithOne(ut => ut.User)
