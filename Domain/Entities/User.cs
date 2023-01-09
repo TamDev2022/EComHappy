@@ -28,5 +28,6 @@ namespace Domain.Entities
         public IList<UserStatusTrans> UserStatusTrans { get; set; }
 
         public ICollection<Order> Orders { get; set; }
+
     }
 }

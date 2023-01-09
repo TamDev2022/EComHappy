@@ -8,10 +8,10 @@ namespace Domain.Base
 {
     public interface ITrackable
     {
-        byte[] RowVersion { get; set; }
+        public byte[] RowVersion { get; set; }
 
-        DateTimeOffset CreatedDateTime { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
 
-        DateTimeOffset? UpdatedDateTime { get; set; }
+        public DateTimeOffset? UpdatedDateTime { get; set; }
     }
 }

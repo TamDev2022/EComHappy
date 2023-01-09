@@ -1,15 +1,18 @@
+using Autofac;
+using MediatR.Extensions.Autofac.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using System.Reflection;
 using WebApi.ConfigurationOptions;
 using WebApi.CustomExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Configuration.AddJsonFile("appsetting.json");
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
         .ConfigureContainer<ContainerBuilder>(builder =>
         {
+            builder.RegisterMediatR(typeof(Program).Assembly);
             builder.RegisterModule(new ApplicationModule());
             builder.RegisterModule(new MediatorModule());
         });
@@ -26,6 +29,10 @@ builder.Services.AddCustomConfiguration(builder.Configuration);
 builder.Services.AddCustomDbContext(builder.Configuration);
 builder.Services.AddCustomSwagger(builder.Configuration);
 builder.Services.AddCustomAuthentication(builder.Configuration);
+builder.Services.AddApplicationServices(builder.Configuration);
+
+// Add service reference
+//builder.Services.AddPersistenceServicesExtension(builder.Configuration);
 
 var app = builder.Build();
 

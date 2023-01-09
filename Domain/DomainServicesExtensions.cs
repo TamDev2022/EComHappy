@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    internal class DomainServicesCollectionExtensions
+    public class DomainServicesExtensions
     {
     }
 }

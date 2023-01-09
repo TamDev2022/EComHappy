@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Domain.Repositories;
+using Persistence.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,18 @@ namespace Infrastructure.AutofacModules
 
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<UnitOfWork<ApplicationDbContext>>()
+              .As<IUnitOfWork<ApplicationDbContext>>()
+              .InstancePerLifetimeScope();
+
+
+            builder.RegisterType<UserRepository>()
+               .As<IUserRepository>()
+               .InstancePerLifetimeScope();
+
+            builder.RegisterType<RoleRepository>()
+                .As<IRoleRepository>()
+                .InstancePerLifetimeScope();
         }
     }
 }

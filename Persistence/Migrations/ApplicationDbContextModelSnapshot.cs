@@ -33,7 +33,7 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTimeOffset>("CreatedDateTime")
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<byte[]>("RowVersion")
@@ -57,7 +57,7 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newsequentialid()");
 
-                    b.Property<DateTimeOffset>("CreatedDateTime")
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<byte[]>("RowVersion")
@@ -105,7 +105,7 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newsequentialid()");
 
-                    b.Property<DateTimeOffset>("CreatedDateTime")
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<Guid>("ParentCategoryId")
@@ -136,7 +136,7 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newsequentialid()");
 
-                    b.Property<DateTimeOffset>("CreatedDateTime")
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<Guid>("EmployeeId")
@@ -173,7 +173,7 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newsequentialid()");
 
-                    b.Property<DateTimeOffset>("CreatedDateTime")
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Note")
@@ -228,7 +228,7 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newsequentialid()");
 
-                    b.Property<DateTimeOffset>("CreatedDateTime")
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<byte[]>("RowVersion")
@@ -262,7 +262,7 @@ namespace Persistence.Migrations
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset>("CreatedDateTime")
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("ProductName")
@@ -297,7 +297,7 @@ namespace Persistence.Migrations
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset>("CreatedDateTime")
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Description")
@@ -341,7 +341,7 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newsequentialid()");
 
-                    b.Property<DateTimeOffset>("CreatedDateTime")
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("ImageName")
@@ -385,7 +385,7 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newsequentialid()");
 
-                    b.Property<DateTimeOffset>("CreatedDateTime")
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("RoleName")
@@ -417,7 +417,7 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTimeOffset>("CreatedDateTime")
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<DateTime>("EndTimeAccessToken")
@@ -467,7 +467,7 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTimeOffset>("CreatedDateTime")
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Email")
@@ -516,7 +516,7 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newsequentialid()");
 
-                    b.Property<DateTimeOffset>("CreatedDateTime")
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<byte[]>("RowVersion")

@@ -7,17 +7,17 @@ namespace WebApi.Controllers.V1
     [Route("api/v{version:apiVersion}/users")]
     public class UserController : ControllerBase
     {
-        private readonly Mediator _mediator;
-        public UserController(Mediator mediator)
+        private readonly IMediator _mediator;
+        public UserController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        [Route("create")]
+        [Route("insert")]
         [HttpPost]
         public async Task<IActionResult> CreateUserAsync([FromBody] CreateUserCommand createUserCommand)
         {
-            _mediator.Send(createUserCommand);
+            await _mediator.Send(createUserCommand);
 
             return new JsonResult(new { success = true });
         }

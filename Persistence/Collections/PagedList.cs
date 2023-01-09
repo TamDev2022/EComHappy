@@ -116,7 +116,7 @@ namespace Persistence.Collections
         /// Gets the total pages.
         /// </summary>
         /// <value>The total pages.</value>
-        public int TotalPages { get; }
+        public new int TotalPages { get; }
         /// <summary>
         /// Gets the index from.
         /// </summary>

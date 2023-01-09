@@ -58,5 +58,6 @@ namespace Domain.ValueObjects
         {
             return !(a == b);
         }
+
     }
 }

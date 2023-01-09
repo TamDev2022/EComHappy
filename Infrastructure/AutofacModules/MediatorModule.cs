@@ -12,10 +12,6 @@ namespace Infrastructure.AutofacModules
 {
     public class MediatorModule : Autofac.Module
     {
-        public MediatorModule()
-        {
-        }
-
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly)
@@ -33,25 +29,28 @@ namespace Infrastructure.AutofacModules
             //foreach (var mediatrOpenType in mediatrOpenTypes)
             //{
             //    builder
-            //        .RegisterAssemblyTypes(typeof(Ping).GetTypeInfo().Assembly)
+            //        .RegisterAssemblyTypes(typeof(CreateUserCommand).GetTypeInfo().Assembly)
             //        .AsClosedTypesOf(mediatrOpenType);
             //}
 
-            builder.RegisterAssemblyTypes(GetType().Assembly)
-              .Where(s => s.IsClosedTypeOf(typeof(IRequestHandler<,>)))
-              .Where(s => s.Name.EndsWith("Handler"))
-              .AsClosedTypesOf(typeof(IRequestHandler<,>));
+            builder.RegisterAssemblyTypes(typeof(CreateUserCommand).GetTypeInfo().Assembly)
+                   .AsClosedTypesOf(typeof(IRequestHandler<,>));
 
-            builder.RegisterAssemblyTypes(GetType().Assembly)
-              .Where(s => s.IsClosedTypeOf(typeof(INotificationHandler<>)))
-              .Where(s => s.Name.EndsWith("Handler"))
-              .AsClosedTypesOf(typeof(INotificationHandler<>));
+            //builder.RegisterAssemblyTypes(GetType().Assembly)
+            //  .Where(s => s.IsClosedTypeOf(typeof(IRequestHandler<,>)))
+            //  .Where(s => s.Name.EndsWith("Handler"))
+            //  .AsClosedTypesOf(typeof(IRequestHandler<,>));
+
+            //builder.RegisterAssemblyTypes(GetType().Assembly)
+            //  .Where(s => s.IsClosedTypeOf(typeof(INotificationHandler<>)))
+            //  .Where(s => s.Name.EndsWith("Handler"))
+            //  .AsClosedTypesOf(typeof(INotificationHandler<>));
 
             builder.Register<ServiceFactory>(context =>
                 {
                     var componentContext = context.Resolve<IComponentContext>();
-                    return t => componentContext.Resolve(t);
-                }).InstancePerLifetimeScope();
+                    return t => { object o; return componentContext.TryResolve(t, out o) ? o : null; };
+                });
 
 
         }
