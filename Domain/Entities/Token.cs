@@ -13,13 +13,13 @@ namespace Domain.Entities
 
         public string RefreshToken { get; set; }
 
-        public DateTime StartTimeAccessToken { get; set; }
+        public string StartTimeAccessToken { get; set; }
 
-        public DateTime StartTimeRefreshToken { get; set; }
+        public string StartTimeRefreshToken { get; set; }
 
-        public DateTime EndTimeAccessToken { get; set; }
+        public string EndTimeAccessToken { get; set; }
 
-        public DateTime EndTimeRefreshToken { get; set; }
+        public string EndTimeRefreshToken { get; set; }
 
         public Guid UserId { get; set; }
         public User User { get; set; }

@@ -11,14 +11,13 @@ namespace Persistence.EntityConfigurations
             builder.Property(u => u.Id).HasDefaultValueSql("newsequentialid()");
 
 
-            builder.HasMany<UserStatusTrans>(u => u.UserStatusTrans)
-                   .WithOne(ut => ut.User)
-                   .HasForeignKey(ut => ut.UserId);
-
             builder.HasMany<Order>(u => u.Orders)
                   .WithOne(o => o.User)
                   .HasForeignKey(o => o.UserId);
 
+            builder.HasOne<UserStatus>(u => u.UserStatus)
+                   .WithOne(us => us.User)
+                   .HasForeignKey<User>(u => u.StatusId);
         }
     }
 }

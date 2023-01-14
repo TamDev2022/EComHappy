@@ -33,7 +33,7 @@ namespace Infrastructure.AutofacModules
             //        .AsClosedTypesOf(mediatrOpenType);
             //}
 
-            builder.RegisterAssemblyTypes(typeof(CreateUserCommand).GetTypeInfo().Assembly)
+            builder.RegisterAssemblyTypes(typeof(InsertUserCommand).GetTypeInfo().Assembly)
                    .AsClosedTypesOf(typeof(IRequestHandler<,>));
 
             //builder.RegisterAssemblyTypes(GetType().Assembly)

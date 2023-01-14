@@ -21,9 +21,18 @@ namespace Application.Common
         }
 
         /// <inheritdoc/>
-        public bool verify(string plaintext, string encodedPassword)
+        public bool Verify(string plaintext, string encodedPassword)
         {
             return BCrypt.Net.BCrypt.EnhancedVerify(plaintext, encodedPassword, BCrypt.Net.HashType.SHA256);
+        }
+
+        public string RandomDigit()
+        {
+            Random r = new();
+            int randNum = r.Next(1000000);
+            string DigitNumber = randNum.ToString("D6");
+
+            return DigitNumber;
         }
     }
 }

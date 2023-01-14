@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class UserStatus : BaseEntity<Guid>, IAggregateRoot
+    public class UserStatus : BaseEntity<int>, IAggregateRoot
     {
         public string StatusName { get; set; }
-        public IList<UserStatusTrans> UserStatusTrans { get; set; }
+
+        public User User { get; set; }
 
     }
 }

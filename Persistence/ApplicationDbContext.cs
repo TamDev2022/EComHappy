@@ -31,7 +31,6 @@ namespace Persistence
         public DbSet<Token> Token { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<UserStatus> UserStatus { get; set; }
-        public DbSet<UserStatusTrans> UserStatusTrans { get; set; }
 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -66,7 +65,6 @@ namespace Persistence
 
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new UserStatusConfiguration());
-            builder.ApplyConfiguration(new UserSatusTransConfiguration());
 
         }
 

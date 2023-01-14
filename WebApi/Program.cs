@@ -1,4 +1,5 @@
 using Autofac;
+using Infrastructure;
 using MediatR.Extensions.Autofac.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -29,9 +30,10 @@ builder.Services.AddCustomConfiguration(builder.Configuration);
 builder.Services.AddCustomDbContext(builder.Configuration);
 builder.Services.AddCustomSwagger(builder.Configuration);
 builder.Services.AddCustomAuthentication(builder.Configuration);
-builder.Services.AddApplicationServices(builder.Configuration);
 
 // Add service reference
+builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddInfrastructure(builder.Configuration);
 //builder.Services.AddPersistenceServicesExtension(builder.Configuration);
 
 var app = builder.Build();

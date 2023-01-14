@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Infrastructure.Storages;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
 using Microsoft.OpenApi.Models;
 using Persistence;
+using SixLabors.ImageSharp;
 using System.Reflection;
 using System.Text;
 using WebApi.ConfigurationOptions;
@@ -19,10 +21,6 @@ namespace WebApi.CustomExtensions
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("ApplicationDbContext")));
-
-
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(configuration.GetConnectionString(appSettings.connectionStrings.ApplicationDbContext)));
 
             return services;
         }
@@ -136,6 +134,7 @@ namespace WebApi.CustomExtensions
         {
             services.AddOptions();
             services.Configure<AppSettings>(configuration);
+            configuration.Bind(appSettings);
 
             return services;
         }
@@ -155,21 +154,28 @@ namespace WebApi.CustomExtensions
 
             }).AddJwtBearer(opts =>
             {
-                opts.Authority = appSettings.identityAuthentication.Authority;
-                opts.Audience = appSettings.identityAuthentication.IdentityUrl;
-                opts.RequireHttpsMetadata = appSettings.identityAuthentication.RequireHttpsMetadata;
+                opts.Authority = appSettings.IdentityAuthentication.Authority;
+                opts.Audience = appSettings.IdentityAuthentication.IdentityUrl;
+                opts.RequireHttpsMetadata = appSettings.IdentityAuthentication.RequireHttpsMetadata;
                 opts.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidIssuer = appSettings.identityAuthentication.Issuer,
-                    ValidAudience = appSettings.identityAuthentication.Audience,
+                    ValidIssuer = appSettings.IdentityAuthentication.Issuer,
+                    ValidAudience = appSettings.IdentityAuthentication.Audience,
                     IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.ASCII.GetBytes(appSettings.identityAuthentication.SecretKey)),
+                        Encoding.ASCII.GetBytes(appSettings.IdentityAuthentication.SecretKey)),
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidateLifetime = false,
                     ValidateIssuerSigningKey = true
                 };
             });
+
+            return services;
+        }
+
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddStorageManager(appSettings.Storage);
 
             return services;
         }

@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.AspNetCore.Identity;
+
 namespace Domain.Entities
 {
     public class User : BaseEntity<Guid>, IAggregateRoot
@@ -18,14 +20,13 @@ namespace Domain.Entities
 
         public Token Token { get; set; }
 
-        public Guid RoleId { get; set; }
+        public int RoleId { get; set; }
         public Role Role { get; set; }
 
-        //public Employee Employee { get; set; }
+        public int StatusId { get; set; }
+        public UserStatus UserStatus { get; set; }
 
         public Cart Cart { get; set; }
-
-        public IList<UserStatusTrans> UserStatusTrans { get; set; }
 
         public ICollection<Order> Orders { get; set; }
 

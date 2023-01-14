@@ -61,7 +61,8 @@ namespace Persistence.Migrations
                 name: "Role",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
                     CreatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
@@ -76,7 +77,8 @@ namespace Persistence.Migrations
                 name: "UserStatus",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     StatusName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
                     CreatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
@@ -127,7 +129,8 @@ namespace Persistence.Migrations
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Avatar = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     VerifyCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    StatusId = table.Column<int>(type: "int", nullable: false),
                     RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
                     CreatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     UpdatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
@@ -139,6 +142,12 @@ namespace Persistence.Migrations
                         name: "FK_User_Role_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Role",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_User_UserStatus_StatusId",
+                        column: x => x.StatusId,
+                        principalTable: "UserStatus",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -240,30 +249,6 @@ namespace Persistence.Migrations
                     table.PrimaryKey("PK_Token", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Token_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserStatusTrans",
-                columns: table => new
-                {
-                    StatusId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserStatusTrans", x => new { x.UserId, x.StatusId });
-                    table.ForeignKey(
-                        name: "FK_UserStatusTrans_UserStatus_StatusId",
-                        column: x => x.StatusId,
-                        principalTable: "UserStatus",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_UserStatusTrans_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id",
@@ -432,9 +417,10 @@ namespace Persistence.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserStatusTrans_StatusId",
-                table: "UserStatusTrans",
-                column: "StatusId");
+                name: "IX_User_StatusId",
+                table: "User",
+                column: "StatusId",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -456,9 +442,6 @@ namespace Persistence.Migrations
                 name: "Token");
 
             migrationBuilder.DropTable(
-                name: "UserStatusTrans");
-
-            migrationBuilder.DropTable(
                 name: "Cart");
 
             migrationBuilder.DropTable(
@@ -466,9 +449,6 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "ProductItem");
-
-            migrationBuilder.DropTable(
-                name: "UserStatus");
 
             migrationBuilder.DropTable(
                 name: "OrderStatus");
@@ -481,6 +461,9 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Role");
+
+            migrationBuilder.DropTable(
+                name: "UserStatus");
 
             migrationBuilder.DropTable(
                 name: "Brand");

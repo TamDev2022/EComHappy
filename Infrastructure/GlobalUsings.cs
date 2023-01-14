@@ -8,4 +8,6 @@ global using Microsoft.Extensions.Options;
 global using Microsoft.Extensions.Logging;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Design;
+global using Microsoft.AspNetCore.Http;
+
 

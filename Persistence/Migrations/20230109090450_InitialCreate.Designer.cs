@@ -12,7 +12,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230107054848_InitialCreate")]
+    [Migration("20230109090450_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -383,10 +383,11 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Role", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("newsequentialid()");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTimeOffset?>("CreatedDateTime")
                         .HasColumnType("datetimeoffset");
@@ -485,14 +486,17 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
                         .IsRequired()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
 
                     b.Property<DateTimeOffset?>("UpdatedDateTime")
                         .HasColumnType("datetimeoffset");
@@ -509,15 +513,19 @@ namespace Persistence.Migrations
 
                     b.HasIndex("RoleId");
 
+                    b.HasIndex("StatusId")
+                        .IsUnique();
+
                     b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.UserStatus", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("newsequentialid()");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTimeOffset?>("CreatedDateTime")
                         .HasColumnType("datetimeoffset");
@@ -538,21 +546,6 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserStatus");
-                });
-
-            modelBuilder.Entity("Domain.Entities.UserStatusTrans", b =>
-                {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("StatusId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("UserId", "StatusId");
-
-                    b.HasIndex("StatusId");
-
-                    b.ToTable("UserStatusTrans");
                 });
 
             modelBuilder.Entity("Domain.Entities.Cart", b =>
@@ -694,24 +687,13 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("Domain.Entities.UserStatusTrans", b =>
-                {
                     b.HasOne("Domain.Entities.UserStatus", "UserStatus")
-                        .WithMany("UserStatusTrans")
-                        .HasForeignKey("StatusId")
+                        .WithOne("User")
+                        .HasForeignKey("Domain.Entities.User", "StatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.User", "User")
-                        .WithMany("UserStatusTrans")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
+                    b.Navigation("Role");
 
                     b.Navigation("UserStatus");
                 });
@@ -772,13 +754,12 @@ namespace Persistence.Migrations
 
                     b.Navigation("Token")
                         .IsRequired();
-
-                    b.Navigation("UserStatusTrans");
                 });
 
             modelBuilder.Entity("Domain.Entities.UserStatus", b =>
                 {
-                    b.Navigation("UserStatusTrans");
+                    b.Navigation("User")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
