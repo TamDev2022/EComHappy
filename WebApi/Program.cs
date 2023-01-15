@@ -4,7 +4,6 @@ using MediatR.Extensions.Autofac.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
-using WebApi.ConfigurationOptions;
 using WebApi.CustomExtensions;
 
 var builder = WebApplication.CreateBuilder(args);

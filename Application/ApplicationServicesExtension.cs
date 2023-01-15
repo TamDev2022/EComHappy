@@ -1,5 +1,4 @@
 ﻿using Application.Common;
-using Application.Service;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -15,7 +14,6 @@ namespace Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSingleton<SecurityHelper>();
-            services.AddSingleton<FileService>();
             return services;
         }
 

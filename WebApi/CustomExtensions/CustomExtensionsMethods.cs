@@ -1,4 +1,6 @@
-﻿using Infrastructure.Storages;
+﻿using Contracts.ConfigurationOptions;
+using Infrastructure;
+using Infrastructure.Storages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -8,7 +10,6 @@ using Persistence;
 using SixLabors.ImageSharp;
 using System.Reflection;
 using System.Text;
-using WebApi.ConfigurationOptions;
 
 namespace WebApi.CustomExtensions
 {
@@ -175,7 +176,7 @@ namespace WebApi.CustomExtensions
 
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddStorageManager(appSettings.Storage);
+            services.AddInfrastructureServices();
 
             return services;
         }

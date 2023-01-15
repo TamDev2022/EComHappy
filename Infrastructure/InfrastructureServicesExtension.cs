@@ -1,7 +1,8 @@
 ﻿using Application.Common;
-using Application.Service;
-using Domain.Infrastructure.Storages;
+using Contracts.Services;
+using Infrastructure.File;
 using Infrastructure.Storages;
+using Infrastructure.Storages.Azure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
@@ -17,8 +18,17 @@ namespace Infrastructure
 
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
         {
+            services.AddSingleton<IFileService, FileService>();
+            services.AddAzureBlobStorageManager();
+            return services;
+        }
+
+        public static IServiceCollection AddAzureBlobStorageManager(this IServiceCollection services)
+        {
+            services.AddSingleton<IFileStorageManager, AzureBlobStorageManager>();
 
             return services;
         }
+
     }
 }

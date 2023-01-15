@@ -1,9 +1,8 @@
-﻿using Application.DTOs;
-using Application.Service;
-using Azure;
+﻿using Azure;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
-using Domain.Infrastructure.Storages;
+using Contracts.ConfigurationOptions;
+using Contracts.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +13,14 @@ namespace Infrastructure.Storages.Azure
 {
     public class AzureBlobStorageManager : IFileStorageManager
     {
-        private readonly FileService _fileService;
+        private readonly IFileService _fileService;
 
         private readonly AzureBlobSettings _option;
         private readonly BlobContainerClient _container;
 
-        public AzureBlobStorageManager(AzureBlobSettings option, FileService fileService)
+        public AzureBlobStorageManager(IOptions<AppSettings> appSettings, IFileService fileService)
         {
-            _option = option;
+            _option = appSettings.Value.Storage.AzureBlob;
             _fileService = fileService;
             _container = new BlobContainerClient(_option.BlobConnectionString, _option.BlobContainerName);
         }
@@ -95,6 +94,7 @@ namespace Infrastructure.Storages.Azure
             // Return all files to the requesting method
             return files;
         }
+
 
         public async Task<BlobResponse?> UploadAsync(IFormFile file)
         {

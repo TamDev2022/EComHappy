@@ -18,12 +18,9 @@ namespace Domain.Base
     {
         public TKey Id { get; set; }
 
-        [Timestamp]
-        public byte[] RowVersion { get; set; }
+        public string? CreatedDateTime { get; set; }
 
-        public DateTimeOffset? CreatedDateTime { get; set; }
-
-        public DateTimeOffset? UpdatedDateTime { get; set; }
+        public string? UpdatedDateTime { get; set; }
 
         private List<IDomainEvent> _domainEvents;
 

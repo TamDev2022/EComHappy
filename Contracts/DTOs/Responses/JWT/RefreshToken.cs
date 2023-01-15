@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.DTOs
+namespace Contracts.DTOs.Responses.JWT
 {
-    public class UserDto
+    internal class RefreshToken
     {
-        public string UserName;
     }
 }

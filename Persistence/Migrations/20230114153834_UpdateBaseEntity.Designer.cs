@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
@@ -11,9 +12,11 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230114153834_UpdateBaseEntity")]
+    partial class UpdateBaseEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,11 +36,11 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("UpdatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("UpdatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
@@ -51,11 +54,11 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newsequentialid()");
 
-                    b.Property<string>("CreatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("UpdatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("UpdatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -93,14 +96,14 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newsequentialid()");
 
-                    b.Property<string>("CreatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<Guid>("ParentCategoryId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("UpdatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("UpdatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Value")
                         .IsRequired()
@@ -118,8 +121,8 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newsequentialid()");
 
-                    b.Property<string>("CreatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<Guid>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
@@ -127,8 +130,8 @@ namespace Persistence.Migrations
                     b.Property<Guid>("OrderStatusId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("UpdatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("UpdatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -149,8 +152,8 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newsequentialid()");
 
-                    b.Property<string>("CreatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Note")
                         .IsRequired()
@@ -159,8 +162,8 @@ namespace Persistence.Migrations
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("UpdatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("UpdatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
@@ -198,15 +201,15 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newsequentialid()");
 
-                    b.Property<string>("CreatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("StatusName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UpdatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("UpdatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
@@ -226,15 +229,15 @@ namespace Persistence.Migrations
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UpdatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("UpdatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
@@ -255,8 +258,8 @@ namespace Persistence.Migrations
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -276,8 +279,8 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UpdatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("UpdatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id", "ProductId");
 
@@ -293,8 +296,8 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newsequentialid()");
 
-                    b.Property<string>("CreatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("ImageName")
                         .IsRequired()
@@ -314,8 +317,8 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UpdatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("UpdatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
@@ -332,15 +335,15 @@ namespace Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CreatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("RoleName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UpdatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("UpdatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
@@ -358,8 +361,8 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("EndTimeAccessToken")
                         .IsRequired()
@@ -381,8 +384,8 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UpdatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("UpdatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -406,8 +409,8 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -427,8 +430,8 @@ namespace Persistence.Migrations
                     b.Property<int>("StatusId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("UpdatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -456,15 +459,15 @@ namespace Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CreatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("CreatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("StatusName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UpdatedDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("UpdatedDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 

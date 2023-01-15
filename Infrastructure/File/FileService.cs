@@ -1,22 +1,20 @@
-﻿using System;
+﻿using Contracts.Services;
+using SixLabors.ImageSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-using SixLabors.ImageSharp;
+using System.Threading.Tasks;
 
-namespace Application.Service
+namespace Infrastructure.File
 {
-    public class FileService
+    public class FileService : IFileService
     {
         private readonly string extension = ".webp";
         private static readonly List<string> ImageExtensions =
             new() { ".JPG", ".JPEG", ".JPE", ".BMP", ".GIF", ".PNG" };
 
-        public FileService()
-        {
-        }
 
         public Tuple<bool, string?> IsImageFile(IFormFile file)
         {
@@ -75,5 +73,6 @@ namespace Application.Service
                 }
             }
         }
+
     }
 }

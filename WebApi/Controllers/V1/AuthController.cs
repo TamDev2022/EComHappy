@@ -27,9 +27,9 @@ namespace WebApi.Controllers.V1
         [HttpPost]
         public async Task<IActionResult> InsertAsync([FromForm] InsertUserCommand insertUserCommand)
         {
-            await _mediator.Send(insertUserCommand);
+            var res = await _mediator.Send(insertUserCommand);
 
-            return new JsonResult(new { success = true });
+            return new JsonResult(new { success = res });
         }
 
         [Route("confirm-email")]

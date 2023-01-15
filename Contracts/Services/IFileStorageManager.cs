@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Infrastructure.Storages
+namespace Contracts.Services
 {
     public interface IFileStorageManager
     {

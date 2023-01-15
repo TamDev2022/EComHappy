@@ -1,13 +1,12 @@
-﻿using Infrastructure.Storages.Azure;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Storages
+namespace Contracts.ConfigurationOptions
 {
-    public class StorageOptions
+    public class StorageSettings
     {
         public AzureBlobSettings AzureBlob { get; set; }
     }
