@@ -10,7 +10,6 @@
     <Folder Include="Commands\Roles\" />
     <Folder Include="Commands\Token\" />
     <Folder Include="DomainEventHandlers\" />
-    <Folder Include="Queries\Users\" />
     <Folder Include="Validators\Users\" />
   </ItemGroup>
 

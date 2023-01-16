@@ -1,8 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Application.Common;
+using Contracts.Enums;
+using Contracts.Services;
+using Domain.Repositories;
+using Microsoft.AspNetCore.Http;
+using Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,4 +39,5 @@ namespace Application.Commands.Users
             Avatar = avatar;
         }
     }
+
 }

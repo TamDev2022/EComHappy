@@ -14,6 +14,6 @@ namespace Contracts.ConfigurationOptions
 
         public StorageSettings Storage { get; set; }
 
-        public JwtTokenSettings JwtToken { get; set; }
+        public JWTSettings JWTSettings { get; set; }
     }
 }

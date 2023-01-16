@@ -1,6 +1,7 @@
 ﻿using Application.Common;
 using Contracts.Services;
 using Infrastructure.File;
+using Infrastructure.JWT;
 using Infrastructure.Storages;
 using Infrastructure.Storages.Azure;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,7 @@ namespace Infrastructure
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
         {
             services.AddSingleton<IFileService, FileService>();
+            services.AddSingleton<IJwtTokenService, JwtTokenService>();
             services.AddAzureBlobStorageManager();
             return services;
         }

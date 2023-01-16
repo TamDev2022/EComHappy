@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -12,9 +13,9 @@ namespace Contracts.Services
     {
         public string GenerateAccessToken(User user);
 
-        public string GenerateRefreshToken();
+        public string GenerateAccessToken(IEnumerable<Claim> claims);
 
-        public RefreshTokenDTO GenerateRefreshToken(int userId);
+        public string GenerateRefreshToken();
 
         public ClaimsPrincipal GetPrincipalFromExpiredToken(string token);
 

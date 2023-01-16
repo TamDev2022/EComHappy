@@ -18,25 +18,17 @@ namespace Application.Queries.Users
         }
     }
 
-    public class GetUserIdQuery : IRequest<bool>
-    {
-        public Guid Id { get; set; }
 
-        public GetUserIdQuery(Guid Id)
+    internal class GetUserQueryHandler : IRequestHandler<GetUserQuery, bool>
+    {
+
+        public GetUserQueryHandler()
         {
-            this.Id = Id;
+
         }
-    }
-
-    public class GetUsersQuery : IRequest<bool>
-    {
-        public int pageIndex { get; set; }
-        public int pageSize { get; set; }
-
-        public GetUsersQuery(int pageIndex, int pageSize)
+        public async Task<bool> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {
-            this.pageIndex = pageIndex;
-            this.pageSize = pageSize;
+            throw new NotImplementedException();
         }
     }
 }

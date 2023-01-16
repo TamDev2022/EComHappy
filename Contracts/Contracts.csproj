@@ -7,11 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\Requests\" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+    <PackageReference Include="MimeKit" Version="3.4.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+    <Folder Include="DTOs\NewFolder\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
 </Project>

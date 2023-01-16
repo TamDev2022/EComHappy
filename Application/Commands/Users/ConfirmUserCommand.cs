@@ -8,5 +8,7 @@ namespace Application.Commands.Users
 {
     public class ConfirmUserCommand : IRequest<bool>
     {
+        public string UserId { get; set; }
+        public string VerifyCode { get; set; }
     }
 }
