@@ -11,12 +11,4 @@
     <PackageReference Include="MimeKit" Version="3.4.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\NewFolder\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
-  </ItemGroup>
-
 </Project>

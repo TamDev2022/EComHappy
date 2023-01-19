@@ -12,6 +12,8 @@ namespace Persistence.Repositories
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             _dbSet = _dbContext.Set<TEntity>();
         }
+
+
         /// <summary>
         /// Gets all entities. This method is not recommended
         /// </summary>

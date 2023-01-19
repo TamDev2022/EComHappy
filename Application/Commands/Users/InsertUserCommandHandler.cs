@@ -45,11 +45,6 @@ namespace Application.Commands.Users
                     return false;
                 }
 
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, request.Email),
-                    new Claim(ClaimTypes.Role, Enum.GetName(RoleEnum.User))
-                };
 
                 var user = new User
                 {
@@ -64,9 +59,9 @@ namespace Application.Commands.Users
                     CreatedDateTime = DateTime.Now.ToString("yyyyMMddHHmmssffff"),
                     UpdatedDateTime = DateTime.Now.ToString("yyyyMMddHHmmssffff"),
 
-                    Token = new Token
+                    Token = new Domain.Entities.Token
                     {
-                        AccessToken = _jwtTokenService.GenerateAccessToken(claims),
+                        AccessToken = _jwtTokenService.GenerateAccessToken(request.Email, Enum.GetName(RoleEnum.User)),
                         RefreshToken = _jwtTokenService.GenerateRefreshToken(),
                         EndTimeRefreshToken = DateTime.Now.AddMonths(1).ToString("yyyyMMddHHmmssffff"),
                         CreatedDateTime = DateTime.Now.ToString("yyyyMMddHHmmssffff"),
@@ -87,7 +82,7 @@ namespace Application.Commands.Users
                     Content = user.VerifyCode
                 };
 
-                await _sendMailService.SendMailAsync(mail);
+                await _mailService.SendMailAsync(mail);
 
                 if (save < 0)
                 {

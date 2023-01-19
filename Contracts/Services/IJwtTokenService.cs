@@ -1,5 +1,4 @@
-﻿using Domain.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -11,9 +10,10 @@ namespace Contracts.Services
 {
     public interface IJwtTokenService
     {
-        public string GenerateAccessToken(User user);
 
         public string GenerateAccessToken(IEnumerable<Claim> claims);
+
+        public string GenerateAccessToken(string name, string role);
 
         public string GenerateRefreshToken();
 

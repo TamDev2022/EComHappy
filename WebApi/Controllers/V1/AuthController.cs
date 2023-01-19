@@ -1,5 +1,8 @@
-﻿using Application.Commands.Users;
+﻿using Application.Commands.Token;
+using Application.Commands.Users;
 using Application.Queries.Users;
+using Contracts.DTOs.UserModel;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers.V1
@@ -18,9 +21,23 @@ namespace WebApi.Controllers.V1
         [HttpPost]
         public async Task<IActionResult> GetAsync([FromBody] GetUserQuery getUserQuery)
         {
-            var res = await _mediator.Send(getUserQuery);
+            var res1 = await _mediator.Send(getUserQuery);
+            var res2 = await _mediator.Send(new UpdateJwtTokenCommand { UserId = res1.Id, Email = res1.Email }); ;
+            if ((res1 != null && res2 != null))
+            {
+                UserTokenModel data = new()
+                {
+                    Id = res1.Id,
+                    UserName = res1.UserName,
+                    Role = res1.Role,
+                    Avatar = res1.Avatar,
+                    AccessToken = res2.AccessToken,
+                    RefreshToken = res2.RefreshToken,
+                };
+                return new JsonResult(new { success = true, data });
+            }
+            return new JsonResult(new { success = false });
 
-            return new JsonResult(new { success = true });
         }
 
         [Route("sign-up")]
@@ -33,10 +50,13 @@ namespace WebApi.Controllers.V1
         }
 
         [Route("confirm-email")]
-        [HttpGet]
-        public async Task<IActionResult> ConfirmEmailAsync(string code)
+        [HttpPut]
+        public async Task<IActionResult> ConfirmEmailAsync([FromBody] ConfirmUserCommand confirmUserCommand)
         {
-            return new JsonResult(new { success = true });
+
+            var res = await _mediator.Send(confirmUserCommand);
+
+            return new JsonResult(new { success = res });
         }
 
         [Route("reset-password")]

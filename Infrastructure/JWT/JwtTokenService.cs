@@ -1,6 +1,5 @@
 ﻿using Contracts.ConfigurationOptions;
 using Contracts.Services;
-using Domain.Entities;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -21,13 +20,8 @@ namespace Infrastructure.JWT
             _jwtSettings = appSettings.Value.JWTSettings;
         }
 
-        public string GenerateAccessToken(User user)
+        public string GenerateAccessToken(IEnumerable<Claim> claims)
         {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.Role, user.RoleId.ToString())
-            };
 
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey));
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
@@ -44,8 +38,13 @@ namespace Infrastructure.JWT
             return tokenString;
         }
 
-        public string GenerateAccessToken(IEnumerable<Claim> claims)
+        public string GenerateAccessToken(string name, string role)
         {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, name),
+                new Claim(ClaimTypes.Role,role)
+            };
 
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey));
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
