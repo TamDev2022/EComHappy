@@ -22,5 +22,6 @@ namespace Domain.Repositories
     {
         public Task<User?> GetAsync(Guid Id);
         public Task<User> GetFirstOrDefaultAsync(string email);
+        public Task<User?> FindByEmailAsync(string email);
     }
 }

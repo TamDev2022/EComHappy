@@ -17,6 +17,16 @@ namespace Persistence.Repositories
         {
             _dbContext = dbContext;
         }
+
+        public async Task<User?> FindByEmailAsync(string email)
+        {
+            var user = await _dbContext.User.Where(u => u.Email == email)
+                                      .Include(u => u.Token)
+                                      .Include(u => u.Role)
+                                      .FirstOrDefaultAsync();
+            return user != null ? user : null;
+        }
+
         public async Task<User?> GetAsync(Guid id)
         {
             var user = await _dbContext.User.FirstOrDefaultAsync(u => u.Id == id);

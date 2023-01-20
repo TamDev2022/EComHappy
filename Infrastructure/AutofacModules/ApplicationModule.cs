@@ -29,6 +29,10 @@ namespace Infrastructure.AutofacModules
             builder.RegisterType<RoleRepository>()
                 .As<IRoleRepository>()
                 .InstancePerLifetimeScope();
+
+            builder.RegisterType<TokenRepository>()
+                .As<ITokenRepository>()
+                .InstancePerLifetimeScope();
         }
     }
 }

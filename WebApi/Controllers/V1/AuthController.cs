@@ -22,8 +22,9 @@ namespace WebApi.Controllers.V1
         public async Task<IActionResult> GetAsync([FromBody] GetUserQuery getUserQuery)
         {
             var res1 = await _mediator.Send(getUserQuery);
-            var res2 = await _mediator.Send(new UpdateJwtTokenCommand { UserId = res1.Id, Email = res1.Email }); ;
-            if ((res1 != null && res2 != null))
+            if (res1 == null) { return new JsonResult(new { success = false }); }
+            var res2 = await _mediator.Send(new UpdateJwtTokenCommand { UserId = res1.Id, Email = res1.Email });
+            if ( res2 != null)
             {
                 UserTokenModel data = new()
                 {
@@ -61,16 +62,19 @@ namespace WebApi.Controllers.V1
 
         [Route("reset-password")]
         [HttpPost]
-        public async Task<IActionResult> ResetPasswordAsync([FromBody] string newPassWord)
+        public async Task<IActionResult> ResetPasswordAsync([FromBody] ResetPassCommand resetPassCommand)
         {
-            return new JsonResult(new { success = true });
+            var result = await _mediator.Send(resetPassCommand);
+
+            return new JsonResult(new { success = result });
         }
 
         [Route("refresh-token")]
-        [HttpGet]
-        public async Task<IActionResult> RefreshTokenAsync(Guid id, string token)
+        [HttpPost]
+        public async Task<IActionResult> RefreshTokenAsync([FromForm] RefreshTokenCommand refreshTokenCommand)
         {
-            return new JsonResult(new { success = true });
+            var result = await _mediator.Send(refreshTokenCommand);
+            return new JsonResult(new { success = result == null ? false : true, data = result });
         }
 
     }
