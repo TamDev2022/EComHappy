@@ -12,7 +12,8 @@ namespace Domain.Entities
 
         public string ValueName { get; set; }
 
-        public IList<ProductValueTrans> ProductValueTrans { get; set; }
+        public ProductOption ProductOption { get; set; }
+        public IList<ProductVariantValue> ProductVariantValues { get; set; }
 
 
     }

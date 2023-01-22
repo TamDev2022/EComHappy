@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class ProductItem : BaseEntity<Guid>, IAggregateRoot
+    public class ProductVariant : BaseEntity<Guid>, IAggregateRoot
     {
         public Guid ProductId { get; set; }
         public Product Product { get; set; }
@@ -19,7 +19,8 @@ namespace Domain.Entities
 
         public IList<CartItem> CartItems { get; set; }
         public IList<OrderItem> OrderItems { get; set; }
-        //public IList<ProductValueTrans> ProductValueTrans { get; set; }
+
+        public IList<ProductVariantValue> ProductVariantValues { get; set; }
         public ICollection<ProductMedia> ProductMedias { get; set; }
 
 

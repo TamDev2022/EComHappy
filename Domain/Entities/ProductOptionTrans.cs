@@ -9,9 +9,10 @@ namespace Domain.Entities
     public class ProductOptionTrans : IAggregateRoot
     {
         public Guid ProductId { get; set; }
-        public Product Product { get; set; }
-
         public Guid ProductOptionId { get; set; }
+
+        public Product Product { get; set; }
         public ProductOption ProductOption { get; set; }
+        public IList<ProductVariantValue> ProductVariantValues { get; set; }
     }
 }

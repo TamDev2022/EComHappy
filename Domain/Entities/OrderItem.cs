@@ -13,8 +13,8 @@ namespace Domain.Entities
         public Order Order { get; set; }
 
         public Guid ProductId { get; set; }
-        public Guid ProductItemId { get; set; }
-        public ProductItem ProductItem { get; set; }
+        public Guid ProductVariantId { get; set; }
+        public ProductVariant ProductVariant { get; set; }
 
         public int Quantity { get; set; }
 

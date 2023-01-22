@@ -24,8 +24,13 @@ namespace Persistence
         public DbSet<OrderStatus> OrderStatus { get; set; }
 
         public DbSet<Product> Product { get; set; }
-        public DbSet<ProductItem> ProductItem { get; set; }
+        public DbSet<ProductVariant> ProductVariant { get; set; }
+        public DbSet<ProductVariantValue> ProductVariantValue { get; set; }
+        public DbSet<ProductOption> ProductOption { get; set; }
+        public DbSet<ProductOptionTrans> ProductOptionTrans { get; set; }
+        public DbSet<ProductOptionValue> ProductOptionValue { get; set; }
         public DbSet<ProductMedia> ProductMedia { get; set; }
+
 
         public DbSet<Role> Role { get; set; }
         public DbSet<Token> Token { get; set; }
@@ -56,8 +61,13 @@ namespace Persistence
             builder.ApplyConfiguration(new OrderStatusConfiguration());
 
             builder.ApplyConfiguration(new ProductConfiguration());
-            builder.ApplyConfiguration(new ProductItemConfiguration());
+            builder.ApplyConfiguration(new ProductVariantConfiguration());
+            builder.ApplyConfiguration(new ProductVariantValueConfiguration());
+            builder.ApplyConfiguration(new ProductOptionConfiguration());
+            builder.ApplyConfiguration(new ProductOptionTransConfiguration());
+            builder.ApplyConfiguration(new ProductOptionValueConfiguration());
             builder.ApplyConfiguration(new ProductMediaConfiguration());
+
 
             builder.ApplyConfiguration(new RoleConfiguration());
 

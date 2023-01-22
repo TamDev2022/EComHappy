@@ -12,8 +12,8 @@ namespace Domain.Entities
         public string ImageName { get; set; }
         public string ImageUrl { get; set; }
 
-        public Guid ProductItemId { get; set; }
+        public Guid ProductVariantId { get; set; }
         public Guid ProductId { get; set; }
-        public ProductItem ProductItem { get; set; }
+        public ProductVariant ProductVariant { get; set; }
     }
 }

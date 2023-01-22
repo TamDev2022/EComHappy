@@ -17,7 +17,7 @@ namespace Domain.Entities
         public Guid CategoryId { get; set; }
         public Category Category { get; set; }
 
-        public ICollection<ProductItem> ProductItems { get; set; }
-        //public IList<ProductOptionTrans> ProductOptionTrans { get; set; }
+        public ICollection<ProductVariant> ProductVariants { get; set; }
+        public IList<ProductOptionTrans> ProductOptionTrans { get; set; }
     }
 }

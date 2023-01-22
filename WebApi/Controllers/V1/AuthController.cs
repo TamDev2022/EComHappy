@@ -24,7 +24,7 @@ namespace WebApi.Controllers.V1
             var res1 = await _mediator.Send(getUserQuery);
             if (res1 == null) { return new JsonResult(new { success = false }); }
             var res2 = await _mediator.Send(new UpdateJwtTokenCommand { UserId = res1.Id, Email = res1.Email });
-            if ( res2 != null)
+            if (res2 != null)
             {
                 UserTokenModel data = new()
                 {
