@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Contracts.Enums
 {
-    public enum Status
+    public enum StatusEnum
     {
         Unconfirmed = 1,
         Active = 2,

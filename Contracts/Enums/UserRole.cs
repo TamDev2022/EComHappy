@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Contracts.Enums
 {
-    public enum UserRole
+    public enum RoleEnum
     {
         User = 1,
         Employee = 2,

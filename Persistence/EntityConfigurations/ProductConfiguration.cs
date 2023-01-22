@@ -14,9 +14,13 @@ namespace Persistence.EntityConfigurations
             builder.Property(p => p.Id).HasDefaultValueSql("newsequentialid()");
 
 
-            builder.HasMany<ProductItem>(p => p.ProductItems)
+            builder.HasMany<ProductVariant>(p => p.ProductVariants)
                    .WithOne(pi => pi.Product)
                    .HasForeignKey(pi => pi.ProductId);
+
+            builder.HasMany<ProductOptionTrans>(p => p.ProductOptionTrans)
+                   .WithOne(pot => pot.Product)
+                   .HasForeignKey(pot => pot.ProductId);
 
         }
     }

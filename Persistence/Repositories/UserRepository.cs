@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Contracts.DTOs.UserModel;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -15,9 +17,31 @@ namespace Persistence.Repositories
         {
             _dbContext = dbContext;
         }
-        public IQueryable<User> Get(UserQueryOptions queryOptions)
+
+        public async Task<User?> FindByEmailAsync(string email)
         {
-            throw new NotImplementedException();
+            var user = await _dbContext.User.Where(u => u.Email == email)
+                                      .Include(u => u.Token)
+                                      .Include(u => u.Role)
+                                      .FirstOrDefaultAsync();
+            return user != null ? user : null;
+        }
+
+        public async Task<User?> GetAsync(Guid id)
+        {
+            var user = await _dbContext.User.FirstOrDefaultAsync(u => u.Id == id);
+            if (user != null) return user;
+            return null;
+        }
+
+        public async Task<User> GetFirstOrDefaultAsync(string email)
+        {
+            var user = await _dbContext.User.Where(u => u.Email == email)
+                                      .Include(u => u.Token)
+                                      .Include(u => u.Role)
+                                      .FirstOrDefaultAsync();
+            return user;
+
         }
     }
 }

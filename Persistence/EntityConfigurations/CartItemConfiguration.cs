@@ -10,7 +10,7 @@ namespace Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<CartItem> builder)
         {
-            builder.HasKey(ci => new { ci.CartId, ci.ProductId, ci.ProductItemId });
+            builder.HasKey(ci => new { ci.CartId, ci.ProductId, ci.ProductVariantId });
         }
     }
 }

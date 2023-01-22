@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Contracts.ConfigurationOptions
 {
-    public class JwtTokenSettings
+    public class JWTSettings
     {
         public string? Issuer { get; set; }
         public string? Audience { get; set; }
-        public string SecretKey { get; init; } = "defaultsecretkey";
-        public string? Prefix { get; init; }
-        public int Expires { get; init; }
+        public string SecretKey { get; set; }
+        public string? Prefix { get; set; }
+        public int Expires { get; set; }
     }
 }

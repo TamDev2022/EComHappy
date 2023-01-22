@@ -17,8 +17,11 @@ namespace Domain.Repositories
         public bool IncludeTokens { get; set; }
         public bool AsNoTracking { get; set; }
     }
+
     public interface IUserRepository : IGenericRepository<User>
     {
-        IQueryable<User> Get(UserQueryOptions queryOptions);
+        public Task<User?> GetAsync(Guid Id);
+        public Task<User> GetFirstOrDefaultAsync(string email);
+        public Task<User?> FindByEmailAsync(string email);
     }
 }

@@ -10,11 +10,12 @@ namespace Contracts.Services
 {
     public interface IJwtTokenService
     {
-        public string GenerateAccessToken(User user);
+
+        public string GenerateAccessToken(IEnumerable<Claim> claims);
+
+        public string GenerateAccessToken(string name, string role);
 
         public string GenerateRefreshToken();
-
-        public RefreshTokenDTO GenerateRefreshToken(int userId);
 
         public ClaimsPrincipal GetPrincipalFromExpiredToken(string token);
 

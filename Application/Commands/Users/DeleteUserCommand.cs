@@ -7,8 +7,8 @@ using System.Windows.Input;
 
 namespace Application.Commands.Users
 {
-    public class DeleteUserCommand : IRequest<bool>
-    {
-        public User User { get; set; }
-    }
+    //public class DeleteUserCommand : IRequest<bool>
+    //{
+    //    public User User { get; set; }
+    //}
 }
