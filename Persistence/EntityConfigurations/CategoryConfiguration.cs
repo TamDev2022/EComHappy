@@ -13,6 +13,10 @@ namespace Persistence.EntityConfigurations
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Id).HasDefaultValueSql("newsequentialid()");
 
+            builder.HasOne(c => c.ParentCategory)
+                   .WithMany(c => c.SubCategories)
+                   .HasForeignKey(c => c.ParentCategoryId)
+                   .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany<Product>(c => c.Products)
                   .WithOne(p => p.Category)
