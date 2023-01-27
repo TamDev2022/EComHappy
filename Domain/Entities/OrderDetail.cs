@@ -11,7 +11,7 @@ namespace Domain.Entities
         public string Note { get; set; }
 
         public Guid OrderId { get; set; }
-        public Order Order { get; set; }
+        public virtual Order Order { get; set; }
 
     }
 }

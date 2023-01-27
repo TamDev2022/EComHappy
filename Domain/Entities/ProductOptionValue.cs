@@ -12,8 +12,8 @@ namespace Domain.Entities
 
         public string ValueName { get; set; }
 
-        public ProductOption ProductOption { get; set; }
-        public IList<ProductVariantValue> ProductVariantValues { get; set; }
+        public virtual ProductOption ProductOption { get; set; }
+        public virtual IList<ProductVariantValue> ProductVariantValues { get; set; }
 
 
     }

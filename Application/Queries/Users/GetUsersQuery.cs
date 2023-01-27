@@ -17,4 +17,12 @@ namespace Application.Queries.Users
             this.pageSize = pageSize;
         }
     }
+
+    public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, bool>
+    {
+        public Task<bool> Handle(GetUsersQuery request, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(true);
+        }
+    }
 }

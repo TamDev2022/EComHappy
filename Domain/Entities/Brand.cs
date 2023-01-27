@@ -10,6 +10,6 @@ namespace Domain.Entities
     {
         public string BrandName { get; set; }
 
-        public ICollection<Product> Products { get;set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

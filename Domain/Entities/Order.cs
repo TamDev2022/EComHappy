@@ -10,16 +10,16 @@ namespace Domain.Entities
     {
 
         public Guid UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         public Guid EmployeeId { get; set; }
         //public Employee Employee { get; set; }
 
         public Guid OrderStatusId { get; set; }
-        public OrderStatus OrderStatus { get; set; }
+        public virtual OrderStatus OrderStatus { get; set; }
 
-        public IList<OrderItem> OrderItems { get; set; }
+        public virtual IList<OrderItem> OrderItems { get; set; }
 
-        public OrderDetail OrderDetail { get; set; }
+        public virtual OrderDetail OrderDetail { get; set; }
     }
 }

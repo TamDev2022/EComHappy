@@ -13,9 +13,9 @@ namespace Domain.Entities
         public Guid ProductOptionId { get; set; }
         public Guid OptionValueId { get; set; }
 
-        public ProductVariant ProductVariant { get; set; }
-        public ProductOptionTrans ProductOptionTrans { get; set; }
-        public ProductOptionValue ProductOptionValue { get; set; }
+        public virtual ProductVariant ProductVariant { get; set; }
+        public virtual ProductOptionTrans ProductOptionTrans { get; set; }
+        public virtual ProductOptionValue ProductOptionValue { get; set; }
 
 
     }

@@ -30,9 +30,41 @@ namespace Infrastructure.AutofacModules
                 .As<IRoleRepository>()
                 .InstancePerLifetimeScope();
 
+            builder.RegisterType<BrandRepository>()
+               .As<IBrandRepository>()
+               .InstancePerLifetimeScope();
+
             builder.RegisterType<TokenRepository>()
                 .As<ITokenRepository>()
                 .InstancePerLifetimeScope();
+
+            builder.RegisterType<CategoryRepository>()
+               .As<ICategoryRepository>()
+               .InstancePerLifetimeScope();
+
+            builder.RegisterType<ProductRepository>()
+               .As<IProductRepository>()
+               .InstancePerLifetimeScope();
+
+
+            builder.RegisterType<ProductMediaRepository>()
+               .As<IProductMediaRepository>()
+               .InstancePerLifetimeScope();
+
+            builder.RegisterType<ProductOptionTransRepository>()
+                .As<IProductOptionTransRepository>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<ProductOptionRepository>()
+               .As<IProductOptionRepository>()
+               .InstancePerLifetimeScope();
+
+            builder.RegisterType<ProductOptionValueRepository>()
+               .As<IProductOptionValueRepository>()
+               .InstancePerLifetimeScope();
+
+
+
         }
     }
 }

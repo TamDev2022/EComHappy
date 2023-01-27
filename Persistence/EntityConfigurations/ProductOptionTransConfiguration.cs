@@ -16,7 +16,7 @@ namespace Persistence.EntityConfigurations
             builder.HasMany<ProductVariantValue>(pot => pot.ProductVariantValues)
                 .WithOne(pvv => pvv.ProductOptionTrans)
                 .HasForeignKey(pvv => new { pvv.ProductId, pvv.ProductOptionId })
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

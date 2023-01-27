@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,9 +17,8 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
                     BrandName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
-                    CreatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -31,15 +30,20 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ParentCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
-                    CreatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Category", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Category_Category_ParentCategoryId",
+                        column: x => x.ParentCategoryId,
+                        principalTable: "Category",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,13 +52,26 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
                     StatusName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
-                    CreatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderStatus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductOption",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
+                    OptionName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductOption", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -64,9 +81,8 @@ namespace Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
-                    CreatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -80,9 +96,8 @@ namespace Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StatusName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
-                    CreatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -97,9 +112,8 @@ namespace Persistence.Migrations
                     ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BranId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
-                    CreatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -119,6 +133,27 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProductOptionValue",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
+                    ProductOptionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ValueName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductOptionValue", x => new { x.Id, x.ProductOptionId });
+                    table.ForeignKey(
+                        name: "FK_ProductOptionValue_ProductOption_ProductOptionId",
+                        column: x => x.ProductOptionId,
+                        principalTable: "ProductOption",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
@@ -131,9 +166,8 @@ namespace Persistence.Migrations
                     VerifyCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RoleId = table.Column<int>(type: "int", nullable: false),
                     StatusId = table.Column<int>(type: "int", nullable: false),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
-                    CreatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -153,7 +187,31 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductItem",
+                name: "ProductOptionTrans",
+                columns: table => new
+                {
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductOptionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductOptionTrans", x => new { x.ProductId, x.ProductOptionId });
+                    table.ForeignKey(
+                        name: "FK_ProductOptionTrans_ProductOption_ProductOptionId",
+                        column: x => x.ProductOptionId,
+                        principalTable: "ProductOption",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductOptionTrans_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Product",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductVariant",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
@@ -163,15 +221,14 @@ namespace Persistence.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<float>(type: "real", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
-                    CreatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductItem", x => new { x.Id, x.ProductId });
+                    table.PrimaryKey("PK_ProductVariant", x => new { x.Id, x.ProductId });
                     table.ForeignKey(
-                        name: "FK_ProductItem_Product_ProductId",
+                        name: "FK_ProductVariant_Product_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Product",
                         principalColumn: "Id",
@@ -184,9 +241,8 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
-                    CreatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -207,9 +263,8 @@ namespace Persistence.Migrations
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     OrderStatusId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
-                    CreatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -235,14 +290,10 @@ namespace Persistence.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
                     AccessToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StartTimeAccessToken = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    StartTimeRefreshToken = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndTimeAccessToken = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndTimeRefreshToken = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndTimeRefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
-                    CreatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -263,19 +314,50 @@ namespace Persistence.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductVariantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
-                    CreatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductMedia", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProductMedia_ProductItem_ProductId_ProductItemId",
-                        columns: x => new { x.ProductId, x.ProductItemId },
-                        principalTable: "ProductItem",
+                        name: "FK_ProductMedia_ProductVariant_ProductId_ProductVariantId",
+                        columns: x => new { x.ProductId, x.ProductVariantId },
+                        principalTable: "ProductVariant",
+                        principalColumns: new[] { "Id", "ProductId" },
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductVariantValue",
+                columns: table => new
+                {
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductVariantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductOptionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OptionValueId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductVariantValue", x => new { x.ProductId, x.ProductVariantId, x.ProductOptionId });
+                    table.ForeignKey(
+                        name: "FK_ProductVariantValue_ProductOptionTrans_ProductId_ProductOptionId",
+                        columns: x => new { x.ProductId, x.ProductOptionId },
+                        principalTable: "ProductOptionTrans",
+                        principalColumns: new[] { "ProductId", "ProductOptionId" },
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ProductVariantValue_ProductOptionValue_ProductOptionId_OptionValueId",
+                        columns: x => new { x.ProductOptionId, x.OptionValueId },
+                        principalTable: "ProductOptionValue",
+                        principalColumns: new[] { "Id", "ProductOptionId" },
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductVariantValue_ProductVariant_ProductId_ProductVariantId",
+                        columns: x => new { x.ProductId, x.ProductVariantId },
+                        principalTable: "ProductVariant",
                         principalColumns: new[] { "Id", "ProductId" },
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -286,11 +368,11 @@ namespace Persistence.Migrations
                 {
                     CartId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ProductVariantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CartItem", x => new { x.CartId, x.ProductId, x.ProductItemId });
+                    table.PrimaryKey("PK_CartItem", x => new { x.CartId, x.ProductId, x.ProductVariantId });
                     table.ForeignKey(
                         name: "FK_CartItem_Cart_CartId",
                         column: x => x.CartId,
@@ -298,9 +380,9 @@ namespace Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CartItem_ProductItem_ProductId_ProductItemId",
-                        columns: x => new { x.ProductId, x.ProductItemId },
-                        principalTable: "ProductItem",
+                        name: "FK_CartItem_ProductVariant_ProductId_ProductVariantId",
+                        columns: x => new { x.ProductId, x.ProductVariantId },
+                        principalTable: "ProductVariant",
                         principalColumns: new[] { "Id", "ProductId" },
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -312,9 +394,8 @@ namespace Persistence.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
-                    CreatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -333,12 +414,12 @@ namespace Persistence.Migrations
                 {
                     OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductVariantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderItem", x => new { x.OrderId, x.ProductId, x.ProductItemId });
+                    table.PrimaryKey("PK_OrderItem", x => new { x.OrderId, x.ProductId, x.ProductVariantId });
                     table.ForeignKey(
                         name: "FK_OrderItem_Order_OrderId",
                         column: x => x.OrderId,
@@ -346,9 +427,9 @@ namespace Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderItem_ProductItem_ProductId_ProductItemId",
-                        columns: x => new { x.ProductId, x.ProductItemId },
-                        principalTable: "ProductItem",
+                        name: "FK_OrderItem_ProductVariant_ProductId_ProductVariantId",
+                        columns: x => new { x.ProductId, x.ProductVariantId },
+                        principalTable: "ProductVariant",
                         principalColumns: new[] { "Id", "ProductId" },
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -360,9 +441,14 @@ namespace Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItem_ProductId_ProductItemId",
+                name: "IX_CartItem_ProductId_ProductVariantId",
                 table: "CartItem",
-                columns: new[] { "ProductId", "ProductItemId" });
+                columns: new[] { "ProductId", "ProductVariantId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Category_ParentCategoryId",
+                table: "Category",
+                column: "ParentCategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Order_OrderStatusId",
@@ -381,9 +467,9 @@ namespace Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderItem_ProductId_ProductItemId",
+                name: "IX_OrderItem_ProductId_ProductVariantId",
                 table: "OrderItem",
-                columns: new[] { "ProductId", "ProductItemId" });
+                columns: new[] { "ProductId", "ProductVariantId" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Product_BranId",
@@ -396,14 +482,34 @@ namespace Persistence.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductItem_ProductId",
-                table: "ProductItem",
+                name: "IX_ProductMedia_ProductId_ProductVariantId",
+                table: "ProductMedia",
+                columns: new[] { "ProductId", "ProductVariantId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductOptionTrans_ProductOptionId",
+                table: "ProductOptionTrans",
+                column: "ProductOptionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductOptionValue_ProductOptionId",
+                table: "ProductOptionValue",
+                column: "ProductOptionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductVariant_ProductId",
+                table: "ProductVariant",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductMedia_ProductId_ProductItemId",
-                table: "ProductMedia",
-                columns: new[] { "ProductId", "ProductItemId" });
+                name: "IX_ProductVariantValue_ProductId_ProductOptionId",
+                table: "ProductVariantValue",
+                columns: new[] { "ProductId", "ProductOptionId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductVariantValue_ProductOptionId_OptionValueId",
+                table: "ProductVariantValue",
+                columns: new[] { "ProductOptionId", "OptionValueId" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Token_UserId",
@@ -439,6 +545,9 @@ namespace Persistence.Migrations
                 name: "ProductMedia");
 
             migrationBuilder.DropTable(
+                name: "ProductVariantValue");
+
+            migrationBuilder.DropTable(
                 name: "Token");
 
             migrationBuilder.DropTable(
@@ -448,13 +557,22 @@ namespace Persistence.Migrations
                 name: "Order");
 
             migrationBuilder.DropTable(
-                name: "ProductItem");
+                name: "ProductOptionTrans");
+
+            migrationBuilder.DropTable(
+                name: "ProductOptionValue");
+
+            migrationBuilder.DropTable(
+                name: "ProductVariant");
 
             migrationBuilder.DropTable(
                 name: "OrderStatus");
 
             migrationBuilder.DropTable(
                 name: "User");
+
+            migrationBuilder.DropTable(
+                name: "ProductOption");
 
             migrationBuilder.DropTable(
                 name: "Product");

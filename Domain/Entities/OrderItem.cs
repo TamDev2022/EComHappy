@@ -10,11 +10,11 @@ namespace Domain.Entities
     {
 
         public Guid OrderId { get; set; }
-        public Order Order { get; set; }
+        public virtual Order Order { get; set; }
 
         public Guid ProductId { get; set; }
         public Guid ProductVariantId { get; set; }
-        public ProductVariant ProductVariant { get; set; }
+        public virtual ProductVariant ProductVariant { get; set; }
 
         public int Quantity { get; set; }
 

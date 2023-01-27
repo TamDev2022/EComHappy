@@ -14,6 +14,6 @@ namespace Domain.Entities
 
         public Guid ProductVariantId { get; set; }
         public Guid ProductId { get; set; }
-        public ProductVariant ProductVariant { get; set; }
+        public virtual ProductVariant ProductVariant { get; set; }
     }
 }

@@ -10,8 +10,8 @@ namespace Domain.Entities
     {
         public string OptionName { get; set; }
 
-        public IList<ProductOptionTrans> ProductOptionTrans { get; set; }
+        public virtual IList<ProductOptionTrans> ProductOptionTrans { get; set; }
 
-        public ICollection<ProductOptionValue> ProductOptionValues { get; set; }
+        public virtual ICollection<ProductOptionValue> ProductOptionValues { get; set; }
     }
 }

@@ -18,17 +18,17 @@ namespace Domain.Entities
 
         public string VerifyCode { get; set; }
 
-        public Token Token { get; set; }
+        public virtual Token Token { get; set; }
 
         public int RoleId { get; set; }
-        public Role Role { get; set; }
+        public virtual Role Role { get; set; }
 
         public int StatusId { get; set; }
-        public UserStatus UserStatus { get; set; }
+        public virtual UserStatus UserStatus { get; set; }
 
-        public Cart Cart { get; set; }
+        public virtual Cart Cart { get; set; }
 
-        public ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
 
     }
 }

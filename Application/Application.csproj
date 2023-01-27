@@ -9,10 +9,13 @@
   <ItemGroup>
     <Folder Include="Commands\Roles\" />
     <Folder Include="DomainEventHandlers\" />
+    <Folder Include="Mappings\" />
     <Folder Include="Validators\Users\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Azure.Storage.Blobs" Version="12.14.1" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="MediatR" Version="11.1.0" />

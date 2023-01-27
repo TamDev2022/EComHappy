@@ -33,10 +33,6 @@ builder.Services.AddCustomDbContext(builder.Configuration);
 builder.Services.AddCustomSwagger(builder.Configuration);
 builder.Services.AddCustomAuthentication(builder.Configuration);
 
-// Add service reference
-builder.Services.AddApplicationServices(builder.Configuration);
-builder.Services.AddInfrastructure(builder.Configuration);
-//builder.Services.AddPersistenceServicesExtension(builder.Configuration);
 
 var app = builder.Build();
 

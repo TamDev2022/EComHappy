@@ -10,8 +10,8 @@ namespace Domain.Entities
     {
 
         public Guid UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
-        public IList<CartItem> CartItems { get; set; }
+        public virtual IList<CartItem> CartItems { get; set; }
     }
 }

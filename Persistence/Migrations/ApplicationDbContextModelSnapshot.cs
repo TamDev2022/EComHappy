@@ -583,7 +583,7 @@ namespace Persistence.Migrations
                     b.HasOne("Domain.Entities.Category", "ParentCategory")
                         .WithMany("SubCategories")
                         .HasForeignKey("ParentCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("ParentCategory");
@@ -714,7 +714,7 @@ namespace Persistence.Migrations
                     b.HasOne("Domain.Entities.ProductOptionTrans", "ProductOptionTrans")
                         .WithMany("ProductVariantValues")
                         .HasForeignKey("ProductId", "ProductOptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.ProductVariant", "ProductVariant")

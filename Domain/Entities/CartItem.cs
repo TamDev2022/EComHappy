@@ -9,10 +9,10 @@ namespace Domain.Entities
     public class CartItem : IAggregateRoot
     {
         public Guid CartId { get; set; }
-        public Cart Cart { get; set; }
+        public virtual Cart Cart { get; set; }
 
         public Guid ProductId { get; set; }
         public Guid ProductVariantId { get; set; }
-        public ProductVariant ProductVariant { get; set; }
+        public virtual ProductVariant ProductVariant { get; set; }
     }
 }

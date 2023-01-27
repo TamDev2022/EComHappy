@@ -12,12 +12,12 @@ namespace Domain.Entities
         public string ProductName { get; set; }
 
         public Guid BranId { get; set; }
-        public Brand Brand { get; set; }
+        public virtual Brand Brand { get; set; }
 
         public Guid CategoryId { get; set; }
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
-        public ICollection<ProductVariant> ProductVariants { get; set; }
-        public IList<ProductOptionTrans> ProductOptionTrans { get; set; }
+        public virtual ICollection<ProductVariant> ProductVariants { get; set; }
+        public virtual IList<ProductOptionTrans> ProductOptionTrans { get; set; }
     }
 }
