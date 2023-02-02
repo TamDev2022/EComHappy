@@ -1,5 +1,4 @@
 ﻿global using Persistence;
-global using Application.Commands.Users;
 global using MediatR;
 global using Autofac;
 global using Autofac.Extensions.DependencyInjection;

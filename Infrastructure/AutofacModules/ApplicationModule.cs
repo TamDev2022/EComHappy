@@ -63,8 +63,6 @@ namespace Infrastructure.AutofacModules
                .As<IProductOptionValueRepository>()
                .InstancePerLifetimeScope();
 
-
-
         }
     }
 }

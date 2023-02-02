@@ -1,5 +1,4 @@
-﻿using Application.Commands.ProductOptions;
-using Application.Queries.Users;
+﻿using Application.ProductOptions.Commands;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

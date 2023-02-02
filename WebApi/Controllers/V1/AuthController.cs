@@ -1,6 +1,6 @@
-﻿using Application.Commands.Token;
-using Application.Commands.Users;
-using Application.Queries.Users;
+﻿using Application.Token.Commands;
+using Application.Users.Commands;
+using Application.Users.Queries;
 using Contracts.DTOs.UserModel;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +17,7 @@ namespace WebApi.Controllers.V1
             _mediator = mediator;
         }
 
-        [Route("sign-in")]
+        [Route("Sign-In")]
         [HttpPost]
         public async Task<IActionResult> GetAsync([FromBody] GetUserQuery getUserQuery)
         {
@@ -41,7 +41,7 @@ namespace WebApi.Controllers.V1
 
         }
 
-        [Route("sign-up")]
+        [Route("Sign-Up")]
         [HttpPost]
         public async Task<IActionResult> InsertAsync([FromForm] InsertUserCommand insertUserCommand)
         {
@@ -50,7 +50,7 @@ namespace WebApi.Controllers.V1
             return new JsonResult(new { success = res });
         }
 
-        [Route("confirm-email")]
+        [Route("Confirm-Email")]
         [HttpPut]
         public async Task<IActionResult> ConfirmEmailAsync([FromBody] ConfirmUserCommand confirmUserCommand)
         {
@@ -60,7 +60,7 @@ namespace WebApi.Controllers.V1
             return new JsonResult(new { success = res });
         }
 
-        [Route("reset-password")]
+        [Route("Reset-Password")]
         [HttpPost]
         public async Task<IActionResult> ResetPasswordAsync([FromBody] ResetPassCommand resetPassCommand)
         {
@@ -69,7 +69,7 @@ namespace WebApi.Controllers.V1
             return new JsonResult(new { success = result });
         }
 
-        [Route("refresh-token")]
+        [Route("Refresh-Token")]
         [HttpPost]
         public async Task<IActionResult> RefreshTokenAsync([FromForm] RefreshTokenCommand refreshTokenCommand)
         {

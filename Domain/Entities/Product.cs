@@ -14,7 +14,7 @@ namespace Domain.Entities
         public Guid BranId { get; set; }
         public virtual Brand Brand { get; set; }
 
-        public Guid CategoryId { get; set; }
+        public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
 
         public virtual ICollection<ProductVariant> ProductVariants { get; set; }

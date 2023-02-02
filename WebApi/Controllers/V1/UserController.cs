@@ -1,5 +1,4 @@
-﻿using Application.Commands.Users;
-using Application.Queries.Users;
+﻿using Application.Users.Queries;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models.Users;

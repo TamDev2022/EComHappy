@@ -7,10 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Roles\" />
+    <Folder Include="ProductOptions\Queries\" />
     <Folder Include="DomainEventHandlers\" />
     <Folder Include="Mappings\" />
-    <Folder Include="Validators\Users\" />
   </ItemGroup>
 
   <ItemGroup>
