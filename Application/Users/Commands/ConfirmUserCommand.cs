@@ -11,7 +11,7 @@ namespace Application.Users.Commands
 {
     public class ConfirmUserCommand : IRequest<bool>
     {
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
         public string VerifyCode { get; set; }
     }
 

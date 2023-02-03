@@ -20,7 +20,7 @@ namespace Domain.Repositories
 
     public interface IUserRepository : IGenericRepository<User>
     {
-        public Task<User?> GetAsync(Guid Id);
+        public Task<User?> GetAsync(int Id);
         public Task<User> GetFirstOrDefaultAsync(string email);
         public Task<User?> FindByEmailAsync(string email);
     }

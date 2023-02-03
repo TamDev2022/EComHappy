@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Domain.Entities
 {
-    public class User : BaseEntity<Guid>, IAggregateRoot
+    public class User : BaseEntity<int>, IAggregateRoot
     {
 
         public string UserName { get; set; }

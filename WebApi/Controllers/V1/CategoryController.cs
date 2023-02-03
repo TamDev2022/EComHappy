@@ -47,9 +47,9 @@ namespace WebApi.Controllers.V1
         }
 
         //[Authorize]
-        [Route("Category")]
+        [Route("CategoryId")]
         [HttpGet]
-        public async Task<IActionResult> GetCategoryIdAsync([FromRoute] GetCategoryIdQuery categoryIdQuery)
+        public async Task<IActionResult> GetCategoryIdAsync([FromQuery] GetCategoryIdQuery categoryIdQuery)
         {
             var result = await _mediator.Send(categoryIdQuery);
 

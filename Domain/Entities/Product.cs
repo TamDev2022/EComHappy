@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Product : BaseEntity<Guid>, IAggregateRoot
+    public class Product : BaseEntity<int>, IAggregateRoot
     {
 
         public string ProductName { get; set; }
 
-        public Guid BranId { get; set; }
+        public int BranId { get; set; }
         public virtual Brand Brand { get; set; }
 
         public int CategoryId { get; set; }

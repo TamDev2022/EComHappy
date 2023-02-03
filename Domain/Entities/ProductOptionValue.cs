@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class ProductOptionValue : BaseEntity<Guid>, IAggregateRoot
+    public class ProductOptionValue : BaseEntity<int>, IAggregateRoot
     {
-        public Guid ProductOptionId { get; set; }
+        public int ProductOptionId { get; set; }
 
         public string ValueName { get; set; }
 

@@ -26,7 +26,7 @@ namespace WebApi.Controllers.V1
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> GetProfileAsync(Guid id)
+        public async Task<IActionResult> GetProfileAsync(int id)
         {
             var result = await _mediator.Send(new GetUserIdQuery(id));
 

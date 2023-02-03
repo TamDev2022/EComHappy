@@ -12,7 +12,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230201164108_InitialDatabase")]
+    [Migration("20230203102946_InitialDatabase")]
     partial class InitialDatabase
     {
         /// <inheritdoc />
@@ -27,10 +27,11 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Brand", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("newsequentialid()");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("BrandName")
                         .IsRequired()
@@ -49,10 +50,11 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Cart", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("newsequentialid()");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatedDateTime")
                         .HasColumnType("nvarchar(max)");
@@ -60,8 +62,8 @@ namespace Persistence.Migrations
                     b.Property<string>("UpdatedDateTime")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -73,14 +75,14 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.CartItem", b =>
                 {
-                    b.Property<Guid>("CartId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("ProductVariantId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ProductVariantId")
+                        .HasColumnType("int");
 
                     b.HasKey("CartId", "ProductId", "ProductVariantId");
 
@@ -119,25 +121,26 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Order", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("newsequentialid()");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatedDateTime")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("EmployeeId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("OrderStatusId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("OrderStatusId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UpdatedDateTime")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -150,10 +153,11 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.OrderDetail", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("newsequentialid()");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatedDateTime")
                         .HasColumnType("nvarchar(max)");
@@ -162,8 +166,8 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UpdatedDateTime")
                         .HasColumnType("nvarchar(max)");
@@ -178,14 +182,14 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.OrderItem", b =>
                 {
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("ProductVariantId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ProductVariantId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -199,10 +203,11 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.OrderStatus", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("newsequentialid()");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatedDateTime")
                         .HasColumnType("nvarchar(max)");
@@ -221,13 +226,14 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Product", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("newsequentialid()");
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("BranId")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BranId")
+                        .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -253,10 +259,11 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.ProductMedia", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("newsequentialid()");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatedDateTime")
                         .HasColumnType("nvarchar(max)");
@@ -269,11 +276,11 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("ProductVariantId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ProductVariantId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -291,10 +298,11 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.ProductOption", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("newsequentialid()");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatedDateTime")
                         .HasColumnType("nvarchar(max)");
@@ -313,11 +321,11 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.ProductOptionTrans", b =>
                 {
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("ProductOptionId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ProductOptionId")
+                        .HasColumnType("int");
 
                     b.HasKey("ProductId", "ProductOptionId");
 
@@ -328,13 +336,14 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.ProductOptionValue", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("newsequentialid()");
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("ProductOptionId")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ProductOptionId")
+                        .HasColumnType("int");
 
                     b.Property<string>("CreatedDateTime")
                         .HasColumnType("nvarchar(max)");
@@ -355,13 +364,14 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.ProductVariant", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("newsequentialid()");
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
                     b.Property<string>("CreatedDateTime")
                         .HasColumnType("nvarchar(max)");
@@ -400,17 +410,17 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.ProductVariantValue", b =>
                 {
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("ProductVariantId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ProductVariantId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("ProductOptionId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ProductOptionId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("OptionValueId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("OptionValueId")
+                        .HasColumnType("int");
 
                     b.HasKey("ProductId", "ProductVariantId", "ProductOptionId");
 
@@ -446,10 +456,11 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Token", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("newsequentialid()");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AccessToken")
                         .IsRequired()
@@ -469,8 +480,8 @@ namespace Persistence.Migrations
                     b.Property<string>("UpdatedDateTime")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -482,10 +493,11 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.User", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("newsequentialid()");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Avatar")
                         .IsRequired()

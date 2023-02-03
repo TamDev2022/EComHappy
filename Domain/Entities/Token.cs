@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Token : BaseEntity<Guid>, IAggregateRoot
+    public class Token : BaseEntity<int>, IAggregateRoot
     {
 
         public string AccessToken { get; set; }
@@ -15,7 +15,7 @@ namespace Domain.Entities
 
         public string EndTimeRefreshToken { get; set; }
 
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
         public virtual User User { get; set; }
 
     }

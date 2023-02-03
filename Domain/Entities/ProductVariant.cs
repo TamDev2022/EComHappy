@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class ProductVariant : BaseEntity<Guid>, IAggregateRoot
+    public class ProductVariant : BaseEntity<int>, IAggregateRoot
     {
-        public Guid ProductId { get; set; }
+        public int ProductId { get; set; }
         public virtual Product Product { get; set; }
 
         public string SKU { get; set; }

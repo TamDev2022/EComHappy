@@ -12,7 +12,7 @@ namespace Application.Categorys.Commands
     public class InsertCategoryCommand : IRequest<bool>
     {
         public string CategoryName { get; set; }
-        public string? ParentCategoryId { get; set; }
+        public int? ParentCategoryId { get; set; }
     }
     public class InsertCategoryCommandHandler : IRequestHandler<InsertCategoryCommand, bool>
     {
@@ -29,7 +29,9 @@ namespace Application.Categorys.Commands
             var cate = new Category
             {
                 CategoryName = request.CategoryName,
-                ParentCategoryId = request.ParentCategoryId.IsNullOrEmpty() ? null : Convert.ToInt32(request.ParentCategoryId)
+                ParentCategoryId = request.ParentCategoryId == null ? null : request.ParentCategoryId,
+                CreatedDateTime = DateTime.Now.ToString("yyyyMMddHHmmssffff"),
+                UpdatedDateTime = DateTime.Now.ToString("yyyyMMddHHmmssffff")
             };
 
             var result = _categoryRepository.Insert(cate);

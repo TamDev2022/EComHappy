@@ -17,7 +17,7 @@ namespace Application.ProductOptionValues.Commands
     public class OptionValueModel
     {
         public string ValueName { get; set; }
-        public Guid ProductOptionId { get; set; }
+        public int ProductOptionId { get; set; }
     }
 
     public class InsertProductOptionValueCommandHandler : IRequestHandler<InsertProductOptionValueCommand, bool>

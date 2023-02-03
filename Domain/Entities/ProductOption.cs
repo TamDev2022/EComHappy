@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class ProductOption : BaseEntity<Guid>, IAggregateRoot
+    public class ProductOption : BaseEntity<int>, IAggregateRoot
     {
         public string OptionName { get; set; }
 

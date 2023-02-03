@@ -1,4 +1,5 @@
 ﻿using Domain.Repositories;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,17 +16,20 @@ namespace Application.Categorys.Queries
     public class GetCategoryIdQueryHandler : IRequestHandler<GetCategoryIdQuery, Category>
     {
         public readonly ICategoryRepository _categoryRepository;
-        public GetCategoryIdQueryHandler(ICategoryRepository categoryRepository)
+        private readonly ILogger<GetCategoryIdQueryHandler> _logger;
+        public GetCategoryIdQueryHandler(ICategoryRepository categoryRepository, ILogger<GetCategoryIdQueryHandler> logger)
         {
             _categoryRepository = categoryRepository;
+            _logger = logger;
         }
 
-        public Task<Category> Handle(GetCategoryIdQuery request, CancellationToken cancellationToken)
+        public async Task<Category> Handle(GetCategoryIdQuery request, CancellationToken cancellationToken)
         {
-            var result = _categoryRepository.Find(request.Id);
+            _logger.LogInformation("Request: " + request.Id);
+            var result = await _categoryRepository.FindAsync(request.Id);
             if (result == null) throw new ArgumentException("Không có Category nào ");
 
-            return Task.FromResult(result);
+            return result;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -15,7 +14,8 @@ namespace Persistence.Migrations
                 name: "Brand",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     BrandName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -51,7 +51,8 @@ namespace Persistence.Migrations
                 name: "OrderStatus",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     StatusName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -65,7 +66,8 @@ namespace Persistence.Migrations
                 name: "ProductOption",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     OptionName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -109,9 +111,10 @@ namespace Persistence.Migrations
                 name: "Product",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BranId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BranId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -137,8 +140,9 @@ namespace Persistence.Migrations
                 name: "ProductOptionValue",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
-                    ProductOptionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductOptionId = table.Column<int>(type: "int", nullable: false),
                     ValueName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -158,7 +162,8 @@ namespace Persistence.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -191,8 +196,8 @@ namespace Persistence.Migrations
                 name: "ProductOptionTrans",
                 columns: table => new
                 {
-                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductOptionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    ProductOptionId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -215,8 +220,9 @@ namespace Persistence.Migrations
                 name: "ProductVariant",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
-                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
                     SKU = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -241,8 +247,9 @@ namespace Persistence.Migrations
                 name: "Cart",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -261,10 +268,11 @@ namespace Persistence.Migrations
                 name: "Order",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    OrderStatusId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    OrderStatusId = table.Column<int>(type: "int", nullable: false),
                     CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -289,11 +297,12 @@ namespace Persistence.Migrations
                 name: "Token",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     AccessToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EndTimeRefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -312,12 +321,13 @@ namespace Persistence.Migrations
                 name: "ProductMedia",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductVariantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductVariantId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
                     CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -336,10 +346,10 @@ namespace Persistence.Migrations
                 name: "ProductVariantValue",
                 columns: table => new
                 {
-                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductVariantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductOptionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    OptionValueId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    ProductVariantId = table.Column<int>(type: "int", nullable: false),
+                    ProductOptionId = table.Column<int>(type: "int", nullable: false),
+                    OptionValueId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -368,9 +378,9 @@ namespace Persistence.Migrations
                 name: "CartItem",
                 columns: table => new
                 {
-                    CartId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductVariantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CartId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    ProductVariantId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -393,9 +403,10 @@ namespace Persistence.Migrations
                 name: "OrderDetail",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
                     CreatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UpdatedDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -414,9 +425,9 @@ namespace Persistence.Migrations
                 name: "OrderItem",
                 columns: table => new
                 {
-                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductVariantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    ProductVariantId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

@@ -34,12 +34,13 @@ namespace WebApi.Middleware
         public async Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
         {
             httpContext.Response.ContentType = "application/json";
-            httpContext.Response.StatusCode = exception switch
-            {
-                BadRequestException => StatusCodes.Status400BadRequest,
-                NotFoundException => StatusCodes.Status404NotFound,
-                _ => StatusCodes.Status500InternalServerError
-            };
+            //httpContext.Response.StatusCode = exception switch
+            //{
+            //    BadRequestException => StatusCodes.Status400BadRequest,
+            //    NotFoundException => StatusCodes.Status404NotFound,
+            //    _ => StatusCodes.Status500InternalServerError
+            //};
+            httpContext.Response.StatusCode = StatusCodes.Status200OK;
 
             await httpContext.Response.WriteAsJsonAsync(new { success = false, message = exception.Message });
         }

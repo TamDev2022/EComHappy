@@ -8,9 +8,9 @@ namespace Application.Users.Queries
 {
     public class GetUserIdQuery : IRequest<bool>
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
-        public GetUserIdQuery(Guid Id)
+        public GetUserIdQuery(int Id)
         {
             this.Id = Id;
         }

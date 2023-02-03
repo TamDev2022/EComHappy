@@ -8,7 +8,7 @@ namespace Domain.Repositories
 {
     public interface ITokenRepository : IGenericRepository<Token>
     {
-        public Task<Token> GetAsync(Guid Id);
-        public Task<Token?> FindUserIdAsync(Guid UserId);
+        public Task<Token> GetAsync(int Id);
+        public Task<Token?> FindUserIdAsync(int UserId);
     }
 }
