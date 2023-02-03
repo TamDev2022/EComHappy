@@ -1,4 +1,5 @@
-﻿using Contracts.ConfigurationOptions;
+﻿using Application;
+using Contracts.ConfigurationOptions;
 using Infrastructure;
 using Infrastructure.Storages;
 using Microsoft.AspNetCore.Mvc;
@@ -68,7 +69,9 @@ namespace WebApi.CustomExtensions
 
                 // If we would like to provide security information about the authorization scheme that we are using (e.g. Bearer).
                 // Add Security information to each operation for bearer tokens and define the scheme.
-                options.OperationFilter<SecurityRequirementsOperationFilter>(true, "Bearer");
+
+                //options.OperationFilter<SecurityRequirementsOperationFilter>(true, "Bearer");
+                options.OperationFilter<AuthOperationAttribute>();
 
                 var _provider = services.BuildServiceProvider().GetRequiredService<IApiVersionDescriptionProvider>();
                 foreach (var description in _provider.ApiVersionDescriptions)
@@ -137,6 +140,11 @@ namespace WebApi.CustomExtensions
             services.Configure<AppSettings>(configuration);
             configuration.Bind(appSettings);
 
+            services.AddInfrastructureServices();
+            services.AddApplicationServices();
+
+
+
             return services;
         }
 
@@ -174,11 +182,5 @@ namespace WebApi.CustomExtensions
             return services;
         }
 
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddInfrastructureServices();
-
-            return services;
-        }
     }
 }

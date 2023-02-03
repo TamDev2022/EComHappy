@@ -11,7 +11,7 @@ namespace Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<ProductOptionValue> builder)
         {
             builder.HasKey(pov => new { pov.Id, pov.ProductOptionId });
-            builder.Property(pov => pov.Id).HasDefaultValueSql("newsequentialid()");
+            builder.Property(pov => pov.Id).ValueGeneratedOnAdd();
 
             builder.HasMany<ProductVariantValue>(pov => pov.ProductVariantValues)
                    .WithOne(pvv => pvv.ProductOptionValue)

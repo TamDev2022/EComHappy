@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class OrderDetail : BaseEntity<Guid>, IAggregateRoot
+    public class OrderDetail : BaseEntity<int>, IAggregateRoot
     {
         public string Note { get; set; }
 
-        public Guid OrderId { get; set; }
-        public Order Order { get; set; }
+        public int OrderId { get; set; }
+        public virtual Order Order { get; set; }
 
     }
 }

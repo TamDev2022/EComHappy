@@ -1,5 +1,5 @@
-﻿using Application.Commands.Users;
-using Application.Queries.Users;
+﻿using Application.Users.Queries;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models.Users;
 
@@ -15,20 +15,22 @@ namespace WebApi.Controllers.V1
             _mediator = mediator;
         }
 
+        [Authorize]
         [HttpGet]
-        public async Task<IActionResult> GetAsync(int pageIndex = 0, int pageSize = 20)
+        public async Task<IActionResult> GetUsersAsync(int pageIndex = 0, int pageSize = 20)
         {
-            var user = await _mediator.Send(new GetUsersQuery(pageIndex, pageSize));
+            var result = await _mediator.Send(new GetUsersQuery(pageIndex, pageSize));
 
-            return new JsonResult(new { success = true });
+            return new JsonResult(new { success = true, data = result });
         }
 
+        [Authorize]
         [HttpPost]
-        public async Task<IActionResult> GetAsync(Guid id)
+        public async Task<IActionResult> GetProfileAsync(int id)
         {
-            var res = await _mediator.Send(new GetUserIdQuery(id));
+            var result = await _mediator.Send(new GetUserIdQuery(id));
 
-            return new JsonResult(new { success = true });
+            return new JsonResult(new { success = true, data = result });
         }
 
 

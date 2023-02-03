@@ -8,7 +8,7 @@ namespace Persistence.EntityConfigurations
             builder.ToTable("User");
 
             builder.HasKey(u => u.Id);
-            builder.Property(u => u.Id).HasDefaultValueSql("newsequentialid()");
+            builder.Property(u => u.Id).ValueGeneratedOnAdd();
 
 
             builder.HasMany<Order>(u => u.Orders)
