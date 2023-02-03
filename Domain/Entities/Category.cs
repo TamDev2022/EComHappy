@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Category : BaseEntity<Guid>, IAggregateRoot
+    public class Category : BaseEntity<int>, IAggregateRoot
     {
-        public string Value { get; set; }
-        public Guid ParentCategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public int? ParentCategoryId { get; set; }
 
-        public ICollection<Product> Products { get; set; }
+        public virtual Category ParentCategory { get; set; }
+        public virtual ICollection<Category> SubCategories { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

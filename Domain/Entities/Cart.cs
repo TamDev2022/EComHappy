@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Cart : BaseEntity<Guid>, IAggregateRoot
+    public class Cart : BaseEntity<int>, IAggregateRoot
     {
 
-        public Guid UserId { get; set; }
-        public User User { get; set; }
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
 
-        public IList<CartItem> CartItems { get; set; }
+        public virtual IList<CartItem> CartItems { get; set; }
     }
 }

@@ -1,10 +1,11 @@
-using Autofac;
+﻿using Autofac;
 using Infrastructure;
 using MediatR.Extensions.Autofac.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
 using WebApi.CustomExtensions;
+using WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,10 +34,6 @@ builder.Services.AddCustomDbContext(builder.Configuration);
 builder.Services.AddCustomSwagger(builder.Configuration);
 builder.Services.AddCustomAuthentication(builder.Configuration);
 
-// Add service reference
-builder.Services.AddApplicationServices(builder.Configuration);
-builder.Services.AddInfrastructure(builder.Configuration);
-//builder.Services.AddPersistenceServicesExtension(builder.Configuration);
 
 var app = builder.Build();
 
@@ -62,9 +59,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.MapControllers();
 
 app.Run();

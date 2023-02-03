@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Contracts.DTOs.TokenModel
 {
-    public class TokenDTO
+    public class TokenDto
     {
         public string AccessToken { get; set; }
         public string RefreshToken { get; set; }

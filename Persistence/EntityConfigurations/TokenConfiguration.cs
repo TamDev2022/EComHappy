@@ -11,7 +11,7 @@ namespace Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<Token> builder)
         {
             builder.HasKey(t => t.Id);
-            builder.Property(t => t.Id).HasDefaultValueSql("newsequentialid()");
+            builder.Property(t => t.Id).ValueGeneratedOnAdd();
 
 
             builder.HasOne<User>(t => t.User)

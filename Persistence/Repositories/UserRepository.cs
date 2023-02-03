@@ -27,7 +27,7 @@ namespace Persistence.Repositories
             return user != null ? user : null;
         }
 
-        public async Task<User?> GetAsync(Guid id)
+        public async Task<User?> GetAsync(int id)
         {
             var user = await _dbContext.User.FirstOrDefaultAsync(u => u.Id == id);
             if (user != null) return user;

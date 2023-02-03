@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Employee : BaseEntity<Guid>, IAggregateRoot
+    public class Employee : BaseEntity<int>, IAggregateRoot
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -16,7 +16,7 @@ namespace Domain.Entities
 
         //public ICollection<Order> Orders { get; set; }
 
-        //public Guid UserId { get; set; }
+        //public int UserId { get; set; }
         //public User User { get; set; }
 
     }

@@ -11,7 +11,7 @@ namespace Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<ProductMedia> builder)
         {
             builder.HasKey(pm => pm.Id);
-            builder.Property(pm => pm.Id).HasDefaultValueSql("newsequentialid()");
+            builder.Property(pm => pm.Id).ValueGeneratedOnAdd();
 
         }
     }

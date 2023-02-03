@@ -15,12 +15,12 @@ namespace Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public Task<Token> GetAsync(Guid Id)
+        public Task<Token> GetAsync(int Id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Token?> FindUserIdAsync(Guid userId)
+        public async Task<Token?> FindUserIdAsync(int userId)
         {
             return await _dbContext.Token.Where(t => t.UserId == userId).FirstOrDefaultAsync();
         }

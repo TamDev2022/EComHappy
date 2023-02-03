@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Product : BaseEntity<Guid>, IAggregateRoot
+    public class Product : BaseEntity<int>, IAggregateRoot
     {
 
         public string ProductName { get; set; }
 
-        public Guid BranId { get; set; }
-        public Brand Brand { get; set; }
+        public int BranId { get; set; }
+        public virtual Brand Brand { get; set; }
 
-        public Guid CategoryId { get; set; }
-        public Category Category { get; set; }
+        public int CategoryId { get; set; }
+        public virtual Category Category { get; set; }
 
-        public ICollection<ProductVariant> ProductVariants { get; set; }
-        public IList<ProductOptionTrans> ProductOptionTrans { get; set; }
+        public virtual ICollection<ProductVariant> ProductVariants { get; set; }
+        public virtual IList<ProductOptionTrans> ProductOptionTrans { get; set; }
     }
 }
