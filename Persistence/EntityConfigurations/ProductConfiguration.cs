@@ -15,12 +15,12 @@ namespace Persistence.EntityConfigurations
 
 
             builder.HasMany<ProductVariant>(p => p.ProductVariants)
-                   .WithOne(pi => pi.Product)
-                   .HasForeignKey(pi => pi.ProductId);
+                   .WithOne(pv => pv.Product)
+                   .HasForeignKey(pv => pv.ProductId);
 
-            builder.HasMany<ProductOptionTrans>(p => p.ProductOptionTrans)
-                   .WithOne(pot => pot.Product)
-                   .HasForeignKey(pot => pot.ProductId);
+            builder.HasMany<ProductOption>(p => p.ProductOptions)
+                   .WithOne(po => po.Product)
+                   .HasForeignKey(po => po.ProductId);
 
         }
     }

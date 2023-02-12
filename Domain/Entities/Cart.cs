@@ -12,6 +12,6 @@ namespace Domain.Entities
         public int UserId { get; set; }
         public virtual User User { get; set; }
 
-        public virtual IList<CartItem> CartItems { get; set; }
+        public virtual ICollection<CartItem> CartItems { get; set; }
     }
 }

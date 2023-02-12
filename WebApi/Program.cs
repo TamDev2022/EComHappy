@@ -1,11 +1,13 @@
 ﻿using Autofac;
 using Infrastructure;
 using MediatR.Extensions.Autofac.DependencyInjection;
+using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
 using WebApi.CustomExtensions;
 using WebApi.Middleware;
+using AutoMapper.Contrib.Autofac.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 

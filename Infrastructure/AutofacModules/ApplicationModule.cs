@@ -46,21 +46,28 @@ namespace Infrastructure.AutofacModules
                .As<IProductRepository>()
                .InstancePerLifetimeScope();
 
+            builder.RegisterType<ProductVariantRepository>()
+               .As<IProductVariantRepository>()
+               .InstancePerLifetimeScope();
+
+            builder.RegisterType<VariantValueRepository>()
+              .As<IVariantValueRepository>()
+              .InstancePerLifetimeScope();
 
             builder.RegisterType<ProductMediaRepository>()
                .As<IProductMediaRepository>()
                .InstancePerLifetimeScope();
 
-            builder.RegisterType<ProductOptionTransRepository>()
-                .As<IProductOptionTransRepository>()
+            builder.RegisterType<ProductOptionRepository>()
+                .As<IProductOptionRepository>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<ProductOptionRepository>()
-               .As<IProductOptionRepository>()
+            builder.RegisterType<OptionRepository>()
+               .As<IOptionRepository>()
                .InstancePerLifetimeScope();
 
-            builder.RegisterType<ProductOptionValueRepository>()
-               .As<IProductOptionValueRepository>()
+            builder.RegisterType<OptionValueRepository>()
+               .As<IOptionValueRepository>()
                .InstancePerLifetimeScope();
 
         }

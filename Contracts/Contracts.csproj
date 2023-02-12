@@ -11,8 +11,4 @@
     <PackageReference Include="MimeKit" Version="3.4.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\Product\" />
-  </ItemGroup>
-
 </Project>

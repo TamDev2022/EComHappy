@@ -1,4 +1,6 @@
-﻿using Domain.Repositories;
+﻿using AutoMapper;
+using Application.Categorys.DTOs;
+using Domain.Repositories;
 using Microsoft.IdentityModel.Tokens;
 using Persistence;
 using System;
@@ -9,22 +11,24 @@ using System.Threading.Tasks;
 
 namespace Application.Categorys.Commands
 {
-    public class InsertCategoryCommand : IRequest<bool>
+    public class InsertCategoryCommand : IRequest<CategoryDto>
     {
         public string CategoryName { get; set; }
         public int? ParentCategoryId { get; set; }
     }
-    public class InsertCategoryCommandHandler : IRequestHandler<InsertCategoryCommand, bool>
+    public class InsertCategoryCommandHandler : IRequestHandler<InsertCategoryCommand, CategoryDto>
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IUnitOfWork<ApplicationDbContext> _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public InsertCategoryCommandHandler(IUnitOfWork<ApplicationDbContext> unitOfWork, ICategoryRepository categoryRepository)
+        public InsertCategoryCommandHandler(IUnitOfWork<ApplicationDbContext> unitOfWork, ICategoryRepository categoryRepository, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _categoryRepository = categoryRepository;
+            _mapper = mapper;
         }
-        public async Task<bool> Handle(InsertCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<CategoryDto> Handle(InsertCategoryCommand request, CancellationToken cancellationToken)
         {
             var cate = new Category
             {
@@ -37,7 +41,7 @@ namespace Application.Categorys.Commands
             var result = _categoryRepository.Insert(cate);
             await _unitOfWork.SaveChangesAsync();
 
-            return true;
+            return _mapper.Map<CategoryDto>(result);
         }
     }
 }

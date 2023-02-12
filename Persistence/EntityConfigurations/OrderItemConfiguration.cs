@@ -10,7 +10,7 @@ namespace Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<OrderItem> builder)
         {
-            builder.HasKey(oi => new { oi.OrderId, oi.ProductId, oi.ProductVariantId });
+            builder.HasKey(oi => new { oi.OrderId, oi.ProductId, oi.VariantId });
         }
     }
 }

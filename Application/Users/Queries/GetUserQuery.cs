@@ -1,5 +1,5 @@
 ﻿using Application.Common;
-using Contracts.DTOs.UserModel;
+using Application.Users.DTOs;
 using Contracts.Services;
 using Domain.Entities;
 using Domain.Repositories;

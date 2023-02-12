@@ -23,7 +23,7 @@ namespace WebApi.Controllers.V1
         {
             var result = await _mediator.Send(insertCategoryCommand);
 
-            return new JsonResult(new { success = true });
+            return new JsonResult(new { success = true, data = result });
         }
 
         //[Authorize]
@@ -33,7 +33,7 @@ namespace WebApi.Controllers.V1
         {
             var result = await _mediator.Send(insertCategoryCommand);
 
-            return new JsonResult(new { success = true });
+            return new JsonResult(new { success = true, data = result });
         }
 
         //[Authorize]
