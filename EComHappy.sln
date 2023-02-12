@@ -5,12 +5,6 @@ VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{1D377AF8-D5C4-4AA7-8C8F-2B24665F3324}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentations", "Presentations", "{9DC9194A-91AB-45EB-A1C0-3F04F468B354}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{7135568A-F31A-43F5-8A8C-8C5C5455D922}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructures", "Infrastructures", "{67E23640-7CC8-4342-9690-91693A5908E2}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{2741BB47-C825-4EE0-8BDA-50D45CCD0343}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{A5480B03-78EE-46CA-B171-97580CD6677A}"
@@ -19,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{E9CC3FE4-6E51-4A7D-AE9F-3C7D58187BD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{BC9F1BA8-558E-4633-B95B-FAF686A20253}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Contracts\Contracts.csproj", "{BC9F1BA8-558E-4633-B95B-FAF686A20253}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,14 +48,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{1D377AF8-D5C4-4AA7-8C8F-2B24665F3324} = {9DC9194A-91AB-45EB-A1C0-3F04F468B354}
-		{2741BB47-C825-4EE0-8BDA-50D45CCD0343} = {7135568A-F31A-43F5-8A8C-8C5C5455D922}
-		{A5480B03-78EE-46CA-B171-97580CD6677A} = {7135568A-F31A-43F5-8A8C-8C5C5455D922}
-		{AA1E537D-D3BB-4938-BACF-479CAE3931B7} = {67E23640-7CC8-4342-9690-91693A5908E2}
-		{E9CC3FE4-6E51-4A7D-AE9F-3C7D58187BD0} = {67E23640-7CC8-4342-9690-91693A5908E2}
-		{BC9F1BA8-558E-4633-B95B-FAF686A20253} = {7135568A-F31A-43F5-8A8C-8C5C5455D922}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2BBA7B4E-8AFB-465C-B980-FDD1094F5EC4}

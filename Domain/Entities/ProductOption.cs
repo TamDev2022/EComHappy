@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class ProductOption : BaseEntity<int>, IAggregateRoot
+    public class ProductOption : IAggregateRoot
     {
-        public string OptionName { get; set; }
+        public int ProductId { get; set; }
+        public int OptionId { get; set; }
 
-        public virtual IList<ProductOptionTrans> ProductOptionTrans { get; set; }
-
-        public virtual ICollection<ProductOptionValue> ProductOptionValues { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual Option Option { get; set; }
+        //public virtual ICollection<VariantValue> VariantValues { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Azure.Core;
-using Contracts.DTOs.TokenModel;
+using Application.Token.DTOs;
 using Contracts.Enums;
 using Contracts.Services;
 using Domain.Repositories;

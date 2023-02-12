@@ -13,7 +13,7 @@ namespace Domain.Entities
         public virtual Order Order { get; set; }
 
         public int ProductId { get; set; }
-        public int ProductVariantId { get; set; }
+        public int VariantId { get; set; }
         public virtual ProductVariant ProductVariant { get; set; }
 
         public int Quantity { get; set; }
