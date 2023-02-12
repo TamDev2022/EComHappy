@@ -10,17 +10,13 @@ namespace Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<ProductOption> builder)
         {
-            builder.HasKey(po => po.Id);
-            builder.Property(p => p.Id).ValueGeneratedOnAdd();
+            builder.HasKey(pot => new { pot.ProductId, pot.OptionId });
 
 
-            builder.HasMany<ProductOptionTrans>(po => po.ProductOptionTrans)
-                   .WithOne(pot => pot.ProductOption)
-                   .HasForeignKey(pot => pot.ProductOptionId);
-
-            builder.HasMany<ProductOptionValue>(po => po.ProductOptionValues)
-                  .WithOne(pov => pov.ProductOption)
-                  .HasForeignKey(pov => pov.ProductOptionId);
+            //builder.HasMany<VariantValue>(po => po.VariantValues)
+            //    .WithOne(vv => vv.ProductOption)
+            //    .HasForeignKey(vv => new { vv.ProductId, vv.OptionId })
+            //    .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

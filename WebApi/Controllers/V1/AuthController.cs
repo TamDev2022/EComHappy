@@ -1,7 +1,7 @@
 ﻿using Application.Token.Commands;
 using Application.Users.Commands;
+using Application.Users.DTOs;
 using Application.Users.Queries;
-using Contracts.DTOs.UserModel;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 

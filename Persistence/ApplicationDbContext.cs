@@ -25,10 +25,10 @@ namespace Persistence
 
         public DbSet<Product> Product { get; set; }
         public DbSet<ProductVariant> ProductVariant { get; set; }
-        public DbSet<ProductVariantValue> ProductVariantValue { get; set; }
+        public DbSet<VariantValue> VariantValue { get; set; }
+        public DbSet<Option> Option { get; set; }
         public DbSet<ProductOption> ProductOption { get; set; }
-        public DbSet<ProductOptionTrans> ProductOptionTrans { get; set; }
-        public DbSet<ProductOptionValue> ProductOptionValue { get; set; }
+        public DbSet<OptionValue> OptionValue { get; set; }
         public DbSet<ProductMedia> ProductMedia { get; set; }
 
 
@@ -62,10 +62,10 @@ namespace Persistence
 
             builder.ApplyConfiguration(new ProductConfiguration());
             builder.ApplyConfiguration(new ProductVariantConfiguration());
-            builder.ApplyConfiguration(new ProductVariantValueConfiguration());
+            builder.ApplyConfiguration(new VariantValueConfiguration());
+            builder.ApplyConfiguration(new OptionConfiguration());
             builder.ApplyConfiguration(new ProductOptionConfiguration());
-            builder.ApplyConfiguration(new ProductOptionTransConfiguration());
-            builder.ApplyConfiguration(new ProductOptionValueConfiguration());
+            builder.ApplyConfiguration(new OptionValueConfiguration());
             builder.ApplyConfiguration(new ProductMediaConfiguration());
 
 

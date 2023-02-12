@@ -10,24 +10,24 @@ namespace Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<ProductVariant> builder)
         {
-            builder.HasKey(pi => new { pi.Id, pi.ProductId });
-            builder.Property(pi => pi.Id).ValueGeneratedOnAdd();
+            builder.HasKey(pv => new { pv.Id, pv.ProductId });
+            builder.Property(pv => pv.Id).ValueGeneratedOnAdd();
 
-            builder.HasMany<CartItem>(pi => pi.CartItems)
+            builder.HasMany<CartItem>(pv => pv.CartItems)
                    .WithOne(ci => ci.ProductVariant)
-                   .HasForeignKey(ci => new { ci.ProductId, ci.ProductVariantId });
+                   .HasForeignKey(ci => new { ci.ProductId, ci.VariantId });
 
-            builder.HasMany<OrderItem>(pi => pi.OrderItems)
+            builder.HasMany<OrderItem>(pv => pv.OrderItems)
                    .WithOne(oi => oi.ProductVariant)
-                   .HasForeignKey(oi => new { oi.ProductId, oi.ProductVariantId });
+                   .HasForeignKey(oi => new { oi.ProductId, oi.VariantId });
 
-            builder.HasMany<ProductMedia>(pi => pi.ProductMedias)
+            builder.HasMany<ProductMedia>(pv => pv.ProductMedias)
                 .WithOne(pm => pm.ProductVariant)
-                .HasForeignKey(pm => new { pm.ProductId, pm.ProductVariantId });
+                .HasForeignKey(pm => new { pm.ProductId, pm.VariantId });
 
-            builder.HasMany<ProductVariantValue>(pi => pi.ProductVariantValues)
-                .WithOne(pvv => pvv.ProductVariant)
-                .HasForeignKey(pvv => new { pvv.ProductId, pvv.ProductVariantId })
+            builder.HasMany<VariantValue>(pv => pv.VariantValues)
+                .WithOne(vv => vv.ProductVariant)
+                .HasForeignKey(vv => new { vv.ProductId, vv.VariantId })
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

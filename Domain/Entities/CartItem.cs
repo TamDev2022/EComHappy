@@ -12,7 +12,7 @@ namespace Domain.Entities
         public virtual Cart Cart { get; set; }
 
         public int ProductId { get; set; }
-        public int ProductVariantId { get; set; }
+        public int VariantId { get; set; }
         public virtual ProductVariant ProductVariant { get; set; }
     }
 }

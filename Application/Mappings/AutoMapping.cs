@@ -1,5 +1,9 @@
 ﻿using AutoMapper;
-using Contracts.DTOs.UserModel;
+using Application.Brands.DTOs;
+using Application.Categorys.DTOs;
+using Application.Products.DTOs;
+using Application.Options.DTOs;
+using Application.Users.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +18,11 @@ namespace Application.Mappings
         {
             CreateMap<UserDTO, User>().ReverseMap();
             CreateMap<UserDTORes, User>();
+            CreateMap<CategoryDto, Category>().ReverseMap();
+            CreateMap<ProductDto, Product>().ReverseMap();
+            CreateMap<OptionDto, Option>().ReverseMap();
+            CreateMap<BrandDto, Brand>().ReverseMap();
+
         }
     }
 }

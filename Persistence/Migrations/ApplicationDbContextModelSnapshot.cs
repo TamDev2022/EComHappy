@@ -78,12 +78,12 @@ namespace Persistence.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductVariantId")
+                    b.Property<int>("VariantId")
                         .HasColumnType("int");
 
-                    b.HasKey("CartId", "ProductId", "ProductVariantId");
+                    b.HasKey("CartId", "ProductId", "VariantId");
 
-                    b.HasIndex("ProductId", "ProductVariantId");
+                    b.HasIndex("ProductId", "VariantId");
 
                     b.ToTable("CartItem");
                 });
@@ -114,6 +114,57 @@ namespace Persistence.Migrations
                     b.HasIndex("ParentCategoryId");
 
                     b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Option", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedDateTime")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OptionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedDateTime")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Option");
+                });
+
+            modelBuilder.Entity("Domain.Entities.OptionValue", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OptionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedDateTime")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedDateTime")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ValueName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id", "OptionId");
+
+                    b.HasIndex("OptionId");
+
+                    b.ToTable("OptionValue");
                 });
 
             modelBuilder.Entity("Domain.Entities.Order", b =>
@@ -185,15 +236,15 @@ namespace Persistence.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductVariantId")
+                    b.Property<int>("VariantId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("OrderId", "ProductId", "ProductVariantId");
+                    b.HasKey("OrderId", "ProductId", "VariantId");
 
-                    b.HasIndex("ProductId", "ProductVariantId");
+                    b.HasIndex("ProductId", "VariantId");
 
                     b.ToTable("OrderItem");
                 });
@@ -238,6 +289,10 @@ namespace Persistence.Migrations
                     b.Property<string>("CreatedDateTime")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -276,9 +331,6 @@ namespace Persistence.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductVariantId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -286,77 +338,29 @@ namespace Persistence.Migrations
                     b.Property<string>("UpdatedDateTime")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("VariantId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId", "ProductVariantId");
+                    b.HasIndex("ProductId", "VariantId");
 
                     b.ToTable("ProductMedia");
                 });
 
             modelBuilder.Entity("Domain.Entities.ProductOption", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CreatedDateTime")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OptionName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedDateTime")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProductOption");
-                });
-
-            modelBuilder.Entity("Domain.Entities.ProductOptionTrans", b =>
-                {
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductOptionId")
+                    b.Property<int>("OptionId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductId", "ProductOptionId");
+                    b.HasKey("ProductId", "OptionId");
 
-                    b.HasIndex("ProductOptionId");
+                    b.HasIndex("OptionId");
 
-                    b.ToTable("ProductOptionTrans");
-                });
-
-            modelBuilder.Entity("Domain.Entities.ProductOptionValue", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ProductOptionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CreatedDateTime")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedDateTime")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ValueName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id", "ProductOptionId");
-
-                    b.HasIndex("ProductOptionId");
-
-                    b.ToTable("ProductOptionValue");
+                    b.ToTable("ProductOption");
                 });
 
             modelBuilder.Entity("Domain.Entities.ProductVariant", b =>
@@ -371,10 +375,6 @@ namespace Persistence.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedDateTime")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Gender")
@@ -403,29 +403,6 @@ namespace Persistence.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductVariant");
-                });
-
-            modelBuilder.Entity("Domain.Entities.ProductVariantValue", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductVariantId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductOptionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OptionValueId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductId", "ProductVariantId", "ProductOptionId");
-
-                    b.HasIndex("ProductId", "ProductOptionId");
-
-                    b.HasIndex("ProductOptionId", "OptionValueId");
-
-                    b.ToTable("ProductVariantValue");
                 });
 
             modelBuilder.Entity("Domain.Entities.Role", b =>
@@ -565,6 +542,27 @@ namespace Persistence.Migrations
                     b.ToTable("UserStatus");
                 });
 
+            modelBuilder.Entity("Domain.Entities.VariantValue", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VariantId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OptionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OptionValueId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId", "VariantId", "OptionId");
+
+                    b.HasIndex("OptionValueId", "OptionId");
+
+                    b.ToTable("VariantValue");
+                });
+
             modelBuilder.Entity("Domain.Entities.Cart", b =>
                 {
                     b.HasOne("Domain.Entities.User", "User")
@@ -586,7 +584,7 @@ namespace Persistence.Migrations
 
                     b.HasOne("Domain.Entities.ProductVariant", "ProductVariant")
                         .WithMany("CartItems")
-                        .HasForeignKey("ProductId", "ProductVariantId")
+                        .HasForeignKey("ProductId", "VariantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -603,6 +601,17 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("ParentCategory");
+                });
+
+            modelBuilder.Entity("Domain.Entities.OptionValue", b =>
+                {
+                    b.HasOne("Domain.Entities.Option", "Option")
+                        .WithMany("OptionValues")
+                        .HasForeignKey("OptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Option");
                 });
 
             modelBuilder.Entity("Domain.Entities.Order", b =>
@@ -645,7 +654,7 @@ namespace Persistence.Migrations
 
                     b.HasOne("Domain.Entities.ProductVariant", "ProductVariant")
                         .WithMany("OrderItems")
-                        .HasForeignKey("ProductId", "ProductVariantId")
+                        .HasForeignKey("ProductId", "VariantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -677,41 +686,30 @@ namespace Persistence.Migrations
                 {
                     b.HasOne("Domain.Entities.ProductVariant", "ProductVariant")
                         .WithMany("ProductMedias")
-                        .HasForeignKey("ProductId", "ProductVariantId")
+                        .HasForeignKey("ProductId", "VariantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ProductVariant");
                 });
 
-            modelBuilder.Entity("Domain.Entities.ProductOptionTrans", b =>
+            modelBuilder.Entity("Domain.Entities.ProductOption", b =>
                 {
+                    b.HasOne("Domain.Entities.Option", "Option")
+                        .WithMany("ProductOptions")
+                        .HasForeignKey("OptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entities.Product", "Product")
-                        .WithMany("ProductOptionTrans")
+                        .WithMany("ProductOptions")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.ProductOption", "ProductOption")
-                        .WithMany("ProductOptionTrans")
-                        .HasForeignKey("ProductOptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Option");
 
                     b.Navigation("Product");
-
-                    b.Navigation("ProductOption");
-                });
-
-            modelBuilder.Entity("Domain.Entities.ProductOptionValue", b =>
-                {
-                    b.HasOne("Domain.Entities.ProductOption", "ProductOption")
-                        .WithMany("ProductOptionValues")
-                        .HasForeignKey("ProductOptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ProductOption");
                 });
 
             modelBuilder.Entity("Domain.Entities.ProductVariant", b =>
@@ -723,33 +721,6 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("Domain.Entities.ProductVariantValue", b =>
-                {
-                    b.HasOne("Domain.Entities.ProductOptionTrans", "ProductOptionTrans")
-                        .WithMany("ProductVariantValues")
-                        .HasForeignKey("ProductId", "ProductOptionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.ProductVariant", "ProductVariant")
-                        .WithMany("ProductVariantValues")
-                        .HasForeignKey("ProductId", "ProductVariantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.ProductOptionValue", "ProductOptionValue")
-                        .WithMany("ProductVariantValues")
-                        .HasForeignKey("ProductOptionId", "OptionValueId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ProductOptionTrans");
-
-                    b.Navigation("ProductOptionValue");
-
-                    b.Navigation("ProductVariant");
                 });
 
             modelBuilder.Entity("Domain.Entities.Token", b =>
@@ -782,6 +753,25 @@ namespace Persistence.Migrations
                     b.Navigation("UserStatus");
                 });
 
+            modelBuilder.Entity("Domain.Entities.VariantValue", b =>
+                {
+                    b.HasOne("Domain.Entities.OptionValue", "OptionValue")
+                        .WithMany("VariantValues")
+                        .HasForeignKey("OptionValueId", "OptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.ProductVariant", "ProductVariant")
+                        .WithMany("VariantValues")
+                        .HasForeignKey("ProductId", "VariantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("OptionValue");
+
+                    b.Navigation("ProductVariant");
+                });
+
             modelBuilder.Entity("Domain.Entities.Brand", b =>
                 {
                     b.Navigation("Products");
@@ -799,6 +789,18 @@ namespace Persistence.Migrations
                     b.Navigation("SubCategories");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Option", b =>
+                {
+                    b.Navigation("OptionValues");
+
+                    b.Navigation("ProductOptions");
+                });
+
+            modelBuilder.Entity("Domain.Entities.OptionValue", b =>
+                {
+                    b.Navigation("VariantValues");
+                });
+
             modelBuilder.Entity("Domain.Entities.Order", b =>
                 {
                     b.Navigation("OrderDetail")
@@ -814,26 +816,9 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Product", b =>
                 {
-                    b.Navigation("ProductOptionTrans");
+                    b.Navigation("ProductOptions");
 
                     b.Navigation("ProductVariants");
-                });
-
-            modelBuilder.Entity("Domain.Entities.ProductOption", b =>
-                {
-                    b.Navigation("ProductOptionTrans");
-
-                    b.Navigation("ProductOptionValues");
-                });
-
-            modelBuilder.Entity("Domain.Entities.ProductOptionTrans", b =>
-                {
-                    b.Navigation("ProductVariantValues");
-                });
-
-            modelBuilder.Entity("Domain.Entities.ProductOptionValue", b =>
-                {
-                    b.Navigation("ProductVariantValues");
                 });
 
             modelBuilder.Entity("Domain.Entities.ProductVariant", b =>
@@ -844,7 +829,7 @@ namespace Persistence.Migrations
 
                     b.Navigation("ProductMedias");
 
-                    b.Navigation("ProductVariantValues");
+                    b.Navigation("VariantValues");
                 });
 
             modelBuilder.Entity("Domain.Entities.Role", b =>
