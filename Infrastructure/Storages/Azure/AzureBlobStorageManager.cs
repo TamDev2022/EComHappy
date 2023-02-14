@@ -1,7 +1,7 @@
 ﻿using Azure;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
-using Contracts.ConfigurationOptions;
+using Infrastructure.ConfigurationOptions;
 using Contracts.Services;
 using System;
 using System.Collections.Generic;

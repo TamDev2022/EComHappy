@@ -1,4 +1,4 @@
-﻿using Contracts.ConfigurationOptions;
+﻿using Infrastructure.ConfigurationOptions;
 using Contracts.Contains;
 using Contracts.Services;
 using MailKit.Security;
@@ -31,7 +31,7 @@ namespace Infrastructure.Mail
             email.Body = new TextPart(MimeKit.Text.TextFormat.Html)
             {
                 Text = string.Format("<h3>Mã xác nhận của bạn: </h3>" + "<h2 style='color:red;'> {0}</h2>", mailContent.Content),
-                
+
             };
 
             using var stmp = new SmtpClient();

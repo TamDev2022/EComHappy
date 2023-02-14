@@ -1,6 +1,6 @@
 ﻿using Application;
-using Contracts.ConfigurationOptions;
 using Infrastructure;
+using Infrastructure.ConfigurationOptions;
 using Infrastructure.Storages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
