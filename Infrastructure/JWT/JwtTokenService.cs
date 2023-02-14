@@ -1,4 +1,4 @@
-﻿using Contracts.ConfigurationOptions;
+﻿using Infrastructure.ConfigurationOptions;
 using Contracts.Services;
 using Microsoft.IdentityModel.Tokens;
 using System;
