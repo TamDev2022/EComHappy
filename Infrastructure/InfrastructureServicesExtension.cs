@@ -1,5 +1,5 @@
 ﻿using Application.Common;
-using Contracts.Services;
+using Domain.Interfaces;
 using Infrastructure.File;
 using Infrastructure.JWT;
 using Infrastructure.Storages;

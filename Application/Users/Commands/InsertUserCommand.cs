@@ -1,7 +1,6 @@
 ﻿using Application.Common;
-using Contracts.Contains;
 using Contracts.Enums;
-using Contracts.Services;
+using Domain.Interfaces;
 using Domain.Repositories;
 using Persistence;
 using System;

@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.Services
+namespace Domain.Interfaces
 {
     public interface IJwtTokenService
     {

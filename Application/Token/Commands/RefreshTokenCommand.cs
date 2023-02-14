@@ -1,7 +1,7 @@
 ﻿using Azure.Core;
 using Application.Token.DTOs;
 using Contracts.Enums;
-using Contracts.Services;
+using Domain.Interfaces;
 using Domain.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Persistence;

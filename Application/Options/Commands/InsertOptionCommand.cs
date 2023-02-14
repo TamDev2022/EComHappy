@@ -1,7 +1,7 @@
 ﻿using Application.Common;
 using Application.Options.DTOs;
 using AutoMapper;
-using Contracts.Services;
+using Domain.Interfaces;
 using Domain.Repositories;
 using Persistence;
 using System;

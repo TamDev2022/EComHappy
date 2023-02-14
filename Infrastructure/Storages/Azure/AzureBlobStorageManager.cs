@@ -2,7 +2,7 @@
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Infrastructure.ConfigurationOptions;
-using Contracts.Services;
+using Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

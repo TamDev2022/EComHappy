@@ -1,6 +1,5 @@
 ﻿using Infrastructure.ConfigurationOptions;
-using Contracts.Contains;
-using Contracts.Services;
+using Domain.Interfaces;
 using MailKit.Security;
 using MimeKit;
 using MailKit.Net.Smtp;

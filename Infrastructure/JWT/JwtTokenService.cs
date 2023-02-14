@@ -1,5 +1,5 @@
 ﻿using Infrastructure.ConfigurationOptions;
-using Contracts.Services;
+using Domain.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;

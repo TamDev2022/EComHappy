@@ -1,4 +1,4 @@
-﻿using Contracts.Services;
+﻿using Domain.Interfaces;
 using SixLabors.ImageSharp;
 using System;
 using System.Collections.Generic;
