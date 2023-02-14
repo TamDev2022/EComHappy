@@ -1,7 +1,6 @@
 ﻿using Application.Common;
-using Contracts.Contains;
+using Domain.Interfaces;
 using Application.Users.DTOs;
-using Contracts.Services;
 using Domain.Repositories;
 using Persistence;
 using System;

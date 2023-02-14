@@ -1,6 +1,6 @@
 ﻿using Application.Common;
 using Application.Users.DTOs;
-using Contracts.Services;
+using Domain.Interfaces;
 using Domain.Entities;
 using Domain.Repositories;
 using Microsoft.EntityFrameworkCore;

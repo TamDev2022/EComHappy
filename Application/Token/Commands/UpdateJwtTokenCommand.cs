@@ -1,6 +1,6 @@
 ﻿using Application.Token.DTOs;
 using Contracts.Enums;
-using Contracts.Services;
+using Domain.Interfaces;
 using Domain.Entities;
 using Domain.Repositories;
 using Persistence;
